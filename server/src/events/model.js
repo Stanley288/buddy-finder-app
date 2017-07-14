@@ -1,6 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 
 const EventSchema = new Schema({
+  onwer: {
+    type: String,
+    required: true,
+  },
   geolocation: {
     type: String,
     required: true,
@@ -26,6 +30,8 @@ const EventSchema = new Schema({
 EventSchema.set('toJSON', {
   transform: (doc, ret) => {
     /* eslint-disable no-param-reassign,no-underscore-dangle */
+    delete ret._id
+    delete ret.__v
   },
 })
 
