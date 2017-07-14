@@ -17,7 +17,6 @@ const { port, env } = config
 app.use(bodyParser.json())
 app.use(morgan('combined')) // TODO: configure later
 
-
 // db setup
 mongoose.Promise = global.Promise
 mongoose.connect(config.db, { useMongoClient: !!1 })
