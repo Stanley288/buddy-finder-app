@@ -3,6 +3,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import mongoose from 'mongoose'
+import doctor from 'doctor-zhivago'
 
 import log from './log'
 import routes from './routes'
@@ -16,6 +17,7 @@ const { port, env } = config
 app.use(bodyParser.json())
 app.use(morgan('combined')) // TODO: configure later
 
+
 // db setup
 mongoose.Promise = global.Promise
 mongoose.connect(config.db, { useMongoClient: !!1 })
@@ -24,6 +26,11 @@ mongoose.connection.on('error', () => {
 })
 
 routes(app)
+
+//  health check
+app.get('/', doctor({
+  mongoDB: { type: 'mongo', instance: mongoose },
+}))
 
 app.listen(port, () => {
   log.info('🌚  api started 🚀 ', { port, env })
