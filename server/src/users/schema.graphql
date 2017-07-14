@@ -1,5 +1,11 @@
-type user {
+input SignupInput {
+  authId: String!
+  email: String!
+}
+
+type User {
   id: String!
+  authId: String!
   email: String!
   age: Int
   gender: String

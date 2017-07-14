@@ -1,25 +1,19 @@
-const getUserById = id => ({
-  id: '123',
-  email: 'firstz@sfu.ca',
-  age: 23,
-  name: 'Stanley',
-  friends: [],
-  friendsRequested: [],
-  friendsPending: [],
-  gender: 'male',
-  avatar: '',
-})
+import User from './model'
 
-const getUserByEmail = email => ({
-  id: '123',
-  email: 'firstz@sfu.ca',
-  age: 23,
-  name: 'Stanley',
-  friends: [],
-  friendsRequested: [],
-  friendsPending: [],
-  gender: 'male',
-  avatar: '',
-})
+const createUser = async (data) => {
+  const user = new User(data)
+  const savedUser = await user.save()
+  return savedUser.toJSON()
+}
 
-export default { getUserById, getUserByEmail }
+const getUserById = async (id) => {
+  const user = await User.findById(id)
+  return user
+}
+
+const getUserByEmail = async (email) => {
+  const user = await User.findOne({ email })
+  return user
+}
+
+export default { getUserById, getUserByEmail, createUser }
