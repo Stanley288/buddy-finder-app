@@ -9,6 +9,7 @@ type Query {
 type Mutation {
   # Create user
   createUser(input: SignupInput!): User
+  updateUser(id: String!, input: UpdateInput!): User
 }
 
 schema {

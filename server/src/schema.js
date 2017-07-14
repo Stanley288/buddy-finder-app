@@ -4,7 +4,7 @@ import { join } from 'path'
 import { makeExecutableSchema } from 'graphql-tools'
 
 import { schema as usersSchema, resolvers as usersResolvers } from './users/schema'
-import { getUserById, getUserByEmail, createUser } from './users/store'
+import { getUserById, getUserByEmail, createUser, updateUser } from './users/store'
 
 const rootSchema = [fs.readFileSync(join(__dirname, 'schema.graphql'), 'utf-8')]
 
@@ -28,6 +28,11 @@ const rootResolvers = {
       const { input } = args
       const createdUser = await createUser(input)
       return createdUser
+    },
+    updateUser: async (root, args) => {
+      const { id, input } = args
+      const updatedUser = await updateUser(id, input)
+      return updatedUser
     },
   },
 }

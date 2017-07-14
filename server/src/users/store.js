@@ -6,6 +6,13 @@ const createUser = async (data) => {
   return savedUser.toJSON()
 }
 
+const updateUser = async (id, data) => {
+  const user = await User.findById(id)
+  Object.keys(data).forEach(entry => (user[entry] = data[entry]))
+  const savedUser = await user.save()
+  return savedUser.toJSON()
+}
+
 const getUserById = async (id) => {
   const user = await User.findById(id)
   return user
@@ -16,4 +23,4 @@ const getUserByEmail = async (email) => {
   return user
 }
 
-export default { getUserById, getUserByEmail, createUser }
+export default { getUserById, getUserByEmail, createUser, updateUser }

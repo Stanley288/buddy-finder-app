@@ -3,6 +3,16 @@ input SignupInput {
   email: String!
 }
 
+input UpdateInput {
+  age: Int
+  gender: String
+  name: String
+  friends: [String]
+  friendsRequested: [String]
+  friendsPending:[String]
+  avatar: String
+}
+
 type User {
   id: String!
   authId: String!
