@@ -1,9 +1,9 @@
 type Query {
   # Find user by id
-  user(id: String!): user
+  user(id: String!): User
 
   # Find user by email
-  userByEmail(email: String!): user
+  userByEmail(email: String!): User
 
   # # Find Amanda addresses by address
   # amandaAddresses(address: String!, limit: Int = 10): [Address]
@@ -12,6 +12,12 @@ type Query {
   # addresses(address: String!, service: ServiceGroup!, limit: Int = 10): [Address]
 }
 
+type Mutation {
+  # Create user
+  createUser(input: SignupInput!): User
+}
+
 schema {
   query: Query
+  mutation: Mutation
 }
