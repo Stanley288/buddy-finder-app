@@ -1,5 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 
+const connectionStatus = ['BEFRIENDED', 'PENDING', 'REQUESTED', 'BLOCKED']
+
 const UserSchema = new Schema({
   authId: {
     type: String,
@@ -11,9 +13,17 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
-  friends: [String],
-  friendsRequested: [String],
-  friendsPending: [String],
+  connections: [{
+    id: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    status: {
+      type: String,
+      enum: connectionStatus,
+    },
+  }],
   gender: String,
   avatar: String,
   age: Number,
@@ -30,7 +40,6 @@ UserSchema.set('toJSON', {
     return ret
   },
 })
-
 
 UserSchema.pre('save', function save(next) {
   this.updatedAt = new Date()

@@ -1,3 +1,10 @@
+enum FriendStatus {
+  BEFRIENDED
+  PENDING
+  REQUESTED
+  BLOCKED
+}
+
 input SignupInput {
   authId: String!
   email: String!
@@ -7,10 +14,13 @@ input UpdateInput {
   age: Int
   gender: String
   name: String
-  friends: [String]
-  friendsRequested: [String]
-  friendsPending:[String]
+  connections: [Friends]
   avatar: String
+}
+
+type Friends {
+  id: String!
+  status: FriendStatus!
 }
 
 type User {
@@ -20,8 +30,6 @@ type User {
   age: Int
   gender: String
   name: String
-  friends: [String]
-  friendsRequested: [String]
-  friendsPending:[String]
+  connections: [Friends]
   avatar: String
 }
