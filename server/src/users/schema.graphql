@@ -3,6 +3,7 @@ enum FriendStatus {
   PENDING
   REQUESTED
   BLOCKED
+  DELETED
 }
 
 input SignupInput {

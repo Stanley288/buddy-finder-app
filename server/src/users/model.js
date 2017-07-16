@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 
-const connectionStatus = ['BEFRIENDED', 'PENDING', 'REQUESTED', 'BLOCKED']
+const connectionStatus = ['BEFRIENDED', 'PENDING', 'REQUESTED', 'BLOCKED', 'DELETED']
 
 const UserSchema = new Schema({
   authId: {
