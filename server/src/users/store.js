@@ -1,10 +1,16 @@
 import User from './model'
+import log from '../utils/log'
 import { USER_NOT_FOUND, SERVER_ERROR } from '../utils/error'
 
 const createUser = async (data) => {
-  const user = new User(data)
-  const savedUser = await user.save()
-  return savedUser.toJSON()
+  try {
+    const user = new User(data)
+    const savedUser = await user.save()
+    return savedUser.toJSON()
+  } catch (e) {
+    log.fatal(elseif)
+    return { error: { code: e.message } }
+  }
 }
 
 const updateUser = async (id, data) => {
@@ -27,13 +33,23 @@ const updateUser = async (id, data) => {
 }
 
 const getUserById = async (id) => {
-  const user = await User.findById(id)
-  return user
+  try {
+    const user = await User.findById(id)
+    if (!user) return { error: { code: USER_NOT_FOUND } }
+    return user
+  } catch (e) {
+    return { error: { code: SERVER_ERROR } }
+  }
 }
 
 const getUserByEmail = async (email) => {
-  const user = await User.findOne({ email })
-  return user
+  try {
+    const user = await User.findOne({ email })
+    if (!user) return { error: { code: USER_NOT_FOUND } }
+    return user
+  } catch (e) {
+    return { error: { code: SERVER_ERROR } }
+  }
 }
 
 export default { getUserById, getUserByEmail, createUser, updateUser }

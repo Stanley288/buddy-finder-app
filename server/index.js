@@ -5,7 +5,7 @@ import morgan from 'morgan'
 import mongoose from 'mongoose'
 import doctor from 'doctor-zhivago'
 
-import log from './log'
+import log from './src/utils/log'
 import routes from './routes'
 import config from './config'
 

@@ -1,3 +1,8 @@
+enum ErrorCode {
+  SERVER_ERROR
+  USER_NOT_FOUND
+}
+
 type Query {
   # Find user by id
   user(id: String!): User
@@ -10,6 +15,10 @@ type Mutation {
   # Create user
   createUser(input: SignupInput!): User
   updateUser(id: String!, input: UpdateInput!): User
+}
+
+interface Error {
+  code: ErrorCode
 }
 
 schema {
