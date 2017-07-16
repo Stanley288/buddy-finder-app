@@ -22,6 +22,7 @@ export default withGoogleMap(({ marker, ...props }) => (
     ref={props.onMapMounted}
     defaultZoom={14}
     defaultCenter={props.center}
+    center={props.center}
     onClick={props.onClick}
     onBoundsChanged={props.onBoundsChanged}
   >

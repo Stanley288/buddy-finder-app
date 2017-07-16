@@ -23,6 +23,16 @@ class Map extends Component {
   handleMapMount = map => this.setState({ map })
   handleSearchBarMount = searchBar => this.setState({ searchBar })
 
+  handleCreateMarker = location => ({
+    position: location,
+    defaultAnimation: 2,
+    key: Date.now(),
+    showInfo: false,
+    onClick: this.handleOnMarkerClick,
+    onRightClick: this.handleMarkerRightClick,
+    onInfoClose: this.handleOnInfoClose,
+  })
+
   handleBoundsChanged = () => this.setState({
     bounds: this.state.map.getBounds(),
     center: this.state.map.getCenter(),
@@ -90,40 +100,21 @@ class Map extends Component {
     //   ],
     // })
     this.setState({
-      marker: {
-        position: event.latLng,
-        defaultAnimation: 2,
-        key: Date.now(),
-        showInfo: false,
-        onClick: this.handleOnMarkerClick,
-        onRightClick: this.handleMarkerRightClick,
-        onInfoClose: this.handleOnInfoClose,
-      },
+      marker: this.handleCreateMarker(event.latLng),
     })
   }
 
   handlePlacesChanged = () => {
     const places = this.state.searchBar.getPlaces()
-
     // Add a marker for each place returned from search bar
-    const placesMarker = places.map(place => ({
-      position: place.geometry.location,
-      defaultAnimation: 2,
-      key: Date.now(),
-      showInfo: false,
-      onClick: this.handleOnMarkerClick,
-      onRightClick: this.handleMarkerRightClick,
-      onInfoClose: this.handleOnInfoClose,
-    }))
+    const placesMarker = places.map(place => this.handleCreateMarker(place.geometry.location))
 
     // Set placesMarker; set map center to first search result
     const mapCenter = placesMarker.length > 0 ? placesMarker[0].position : this.state.center
 
-    const updatedMarkers = [...this.state.markers, ...placesMarker]
-
     this.setState({
       center: mapCenter,
-      markers: updatedMarkers,
+      marker: this.handleCreateMarker(placesMarker[0].position),
     })
   }
 
@@ -141,6 +132,7 @@ class Map extends Component {
           marker={this.state.marker}
           events={this.state.events}
           onPlacesChanged={this.handlePlacesChanged}
+          searchBar
         />
       </div>
     )
