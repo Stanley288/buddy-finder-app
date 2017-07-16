@@ -100,6 +100,7 @@ class Map extends Component {
     //   ],
     // })
     this.setState({
+      center: event.latLng,
       marker: this.handleCreateMarker(event.latLng),
     })
   }
