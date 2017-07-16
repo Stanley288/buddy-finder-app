@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import Radium from 'radium'
-import { Card, CardTitle } from 'material-ui/Card'
 import theme from 'theme'
 
 import NavBar from 'components/NavBar'
 import Map from './Map'
 import Sidebar from './Sidebar'
-
+import { actions } from './dashboard.module'
 
 const styles = {
   root: {
@@ -38,7 +39,6 @@ class Dashboard extends Component {
           <div style={styles.map}>
             <Map />
           </div>
-          <Sidebar />
         </div>
       </div>
     )
@@ -48,4 +48,12 @@ class Dashboard extends Component {
 Dashboard.propTypes = {}
 Dashboard.defaultProps = {}
 
-export default Radium(Dashboard)
+const mapStateToProps = state => ({
+  places: state.dashboard.places,
+})
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({ ...actions }, dispatch),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(Dashboard))
