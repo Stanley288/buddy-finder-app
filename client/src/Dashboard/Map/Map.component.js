@@ -17,7 +17,7 @@ const styles = {
   },
 }
 
-export default withGoogleMap(props => (
+export default withGoogleMap(({ marker, ...props }) => (
   <GoogleMap
     ref={props.onMapMounted}
     defaultZoom={14}
@@ -38,16 +38,16 @@ export default withGoogleMap(props => (
         null
     }
     {
-      props.marker ?
+      marker ?
         <Marker
-          {...props.marker}
-          onClick={() => props.marker.onClick(props.marker)}
-          onRightClick={() => props.marker.onRightClick(props.marker)}
+          {...marker}
+          onClick={() => marker.onClick(marker)}
+          onRightClick={() => marker.onRightClick(marker)}
         >
           {
-            props.marker.showInfo && (
-              <InfoWindow onCloseClick={() => props.marker.onInfoClose(props.marker)}>
-                <div>{props.marker.infoContent}</div>
+            marker.showInfo && (
+              <InfoWindow onCloseClick={() => marker.onInfoClose(marker)}>
+                <div>{marker.infoContent}</div>
               </InfoWindow>
             )
           }
