@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Radium from 'radium'
-import { Card, CardTitle } from 'material-ui/Card'
+import { Card } from 'material-ui/Card'
 
-import PrimaryTextField from 'components/TextField/PrimaryTextField'
 import theme from 'theme'
 
 const styles = {
   card: {
     position: 'absolute',
-    top: 50,
+    top: 60,
     left: 10,
-    padding: 0,
-    background: 'none',
-    boxShadow: 'none',
+    width: 300,
+    height: 80,
+    zIndex: 1,
   },
 }
 
@@ -23,7 +22,6 @@ class SideBar extends Component {
   render() {
     return (
       <Card style={styles.card}>
-        <PrimaryTextField hintText="Search an address or event" />
       </Card>
     )
   }

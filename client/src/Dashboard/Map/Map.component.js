@@ -2,16 +2,20 @@ import React from 'react'
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 import SearchBox from 'react-google-maps/lib/places/SearchBox'
 
+import theme from 'theme'
+
 const styles = {
   searchBar: {
-    border: '1px solid transparent',
+    border: `1px solid ${theme.color.primary}`,
+    backgroundColor: theme.color.white,
     width: 240,
-    height: 32,
-    marginTop: 27,
-    padding: '0 12px',
-    borderRadius: 1,
+    height: 50,
+    borderRadius: 25,
+    padding: '0 25px',
+    margin: '10px 0 0 -100px',
     boxShadow: '0 2px 6px rgba(0, 0, 0, 0.3)',
     fontSize: 14,
+    zIndex: 2,
     outline: 'none',
     textOverflow: 'ellipses',
   },
@@ -33,7 +37,7 @@ export default withGoogleMap(({ marker, ...props }) => (
           bounds={props.bounds}
           controlPosition={google.maps.ControlPosition.TOP_LEFT}
           onPlacesChanged={props.onPlacesChanged}
-          inputPlaceholder="Customized your placeholder"
+          inputPlaceholder="Search for a place or event"
           inputStyle={styles.searchBar}
         /> :
         null
