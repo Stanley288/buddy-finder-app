@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 
-const connectionStatus = ['BEFRIENDED', 'PENDING', 'REQUESTED', 'BLOCKED', 'DELETED']
+const relationshipStatuses = ['BEFRIENDED', 'PENDING', 'REQUESTED', 'BLOCKED', 'DELETED']
 
 const UserSchema = new Schema({
   authId: {
@@ -19,9 +19,10 @@ const UserSchema = new Schema({
       required: true,
       unique: true,
     },
-    status: {
+    relationship: {
       type: String,
-      enum: connectionStatus,
+      required: true,
+      enum: relationshipStatuses,
     },
   }],
   gender: String,

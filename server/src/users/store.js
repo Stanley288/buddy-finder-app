@@ -8,8 +8,10 @@ const createUser = async (data) => {
 
 const updateUser = async (id, data) => {
   const user = await User.findById(id)
+  console.log(data)
   Object.keys(data).forEach((entry) => {
     // friend list management
+    console.log('entry', entry)
     if (entry === 'connections') {
       user.connections = [...user.connections, ...data.connections]
     } else {

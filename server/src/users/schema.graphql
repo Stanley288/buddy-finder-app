@@ -1,4 +1,4 @@
-enum FriendStatus {
+enum Relationship {
   BEFRIENDED
   PENDING
   REQUESTED
@@ -15,22 +15,27 @@ input UpdateInput {
   age: Int
   gender: String
   name: String
-  connections: [Friends]
+  connections: [FriendsInput]
   avatar: String
+}
+
+input FriendsInput {
+  id: String!
+  relationship: Relationship!
 }
 
 type Friends {
   id: String!
-  status: FriendStatus!
+  relationship: Relationship!
 }
 
 type User {
   id: String!
   authId: String!
   email: String!
+  connections: [Friends]
   age: Int
   gender: String
   name: String
-  connections: [Friends]
   avatar: String
 }
