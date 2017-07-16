@@ -37,16 +37,33 @@ export default withGoogleMap(props => (
         /> :
         null
     }
-    {props.markers.map(marker => (
+    {
+      props.marker ?
+        <Marker
+          {...props.marker}
+          onClick={() => props.marker.onClick(props.marker)}
+          onRightClick={() => props.marker.onRightClick(props.marker)}
+        >
+          {
+            props.marker.showInfo && (
+              <InfoWindow onCloseClick={() => props.marker.onInfoClose(props.marker)}>
+                <div>{props.marker.infoContent}</div>
+              </InfoWindow>
+            )
+          }
+        </Marker> :
+        null
+    }
+    {props.events.map(event => (
       <Marker
-        {...marker}
-        onClick={() => marker.onClick(marker)}
-        onRightClick={() => marker.onRightClick(marker)}
+        {...event}
+        onClick={() => event.onClick(event)}
+        onRightClick={() => event.onRightClick(event)}
       >
         {
-          marker.showInfo && (
-            <InfoWindow onCloseClick={() => marker.onInfoClose(marker)}>
-              <div>{marker.infoContent}</div>
+          event.showInfo && (
+            <InfoWindow onCloseClick={() => event.onInfoClose(event)}>
+              <div>{event.infoContent}</div>
             </InfoWindow>
           )
         }

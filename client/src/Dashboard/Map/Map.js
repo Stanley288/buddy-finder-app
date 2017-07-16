@@ -75,19 +75,30 @@ class Map extends Component {
   }
 
   handleOnMapClick = (event) => {
+    // this.setState({
+    //   markers: [
+    //     ...this.state.markers,
+    //     {
+    //       position: event.latLng,
+    //       defaultAnimation: 2,
+    //       key: Date.now(),
+    //       showInfo: false,
+    //       onClick: this.handleOnMarkerClick,
+    //       onRightClick: this.handleMarkerRightClick,
+    //       onInfoClose: this.handleOnInfoClose,
+    //     },
+    //   ],
+    // })
     this.setState({
-      markers: [
-        ...this.state.markers,
-        {
-          position: event.latLng,
-          defaultAnimation: 2,
-          key: Date.now(),
-          showInfo: false,
-          onClick: this.handleOnMarkerClick,
-          onRightClick: this.handleMarkerRightClick,
-          onInfoClose: this.handleOnInfoClose,
-        },
-      ],
+      marker: {
+        position: event.latLng,
+        defaultAnimation: 2,
+        key: Date.now(),
+        showInfo: false,
+        onClick: this.handleOnMarkerClick,
+        onRightClick: this.handleMarkerRightClick,
+        onInfoClose: this.handleOnInfoClose,
+      },
     })
   }
 
@@ -127,7 +138,8 @@ class Map extends Component {
           mapElement={<div style={{ height: '100%' }} />}
           onBoundsChanged={this.handleBoundsChanged}
           onClick={this.handleOnMapClick}
-          markers={this.state.markers}
+          marker={this.state.marker}
+          events={this.state.events}
           onPlacesChanged={this.handlePlacesChanged}
         />
       </div>
