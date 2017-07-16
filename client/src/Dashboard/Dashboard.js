@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Radium from 'radium'
-import { Card, CardTitle } from 'material-ui/Card'
 import theme from 'theme'
 
 import NavBar from 'components/NavBar'
 import Map from './Map'
 import Sidebar from './Sidebar'
-
 
 const styles = {
   root: {
@@ -38,7 +36,6 @@ class Dashboard extends Component {
           <div style={styles.map}>
             <Map />
           </div>
-          <Sidebar />
         </div>
       </div>
     )
