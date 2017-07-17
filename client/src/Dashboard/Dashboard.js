@@ -30,8 +30,11 @@ const styles = {
 
 class Dashboard extends Component {
   state = {
+    map: null,
     search: '',
   }
+
+  handleMapMount = map => this.setState({ map })
 
   handleOnChange = (event) => {
     const { value, name } = event.target
@@ -48,7 +51,7 @@ class Dashboard extends Component {
         <Sidebar value={this.state.search} onChange={this.handleOnChange} />
         <div style={styles.dashboard}>
           <div style={styles.map}>
-            <Map />
+            <Map onMapMounted={this.handleMapMount} map={this.state.map} />
           </div>
         </div>
       </div>
