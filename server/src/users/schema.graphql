@@ -29,6 +29,12 @@ type Friends {
   relationship: Relationship!
 }
 
+
+type UserOutput {
+  user: User
+  error: Error
+}
+
 type User {
   id: String!
   authId: String!
