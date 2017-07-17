@@ -2,13 +2,14 @@ import User from './model'
 import log from '../utils/log'
 import { USER_NOT_FOUND, SERVER_ERROR } from '../utils/error'
 
+//  TODO: DEEP MERGE AND ERROR HANDLING
 const createUser = async (data) => {
   try {
     const user = new User(data)
     const savedUser = await user.save()
     return savedUser.toJSON()
   } catch (e) {
-    log.fatal(elseif)
+    log.fatal(e)
     return { error: { code: e.message } }
   }
 }
