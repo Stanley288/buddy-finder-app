@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Radium from 'radium'
 import { Card } from 'material-ui/Card'
 
+import PrimaryTextField from 'components/TextField/PrimaryTextField'
+
 import theme from 'theme'
 
 const styles = {
@@ -13,6 +15,7 @@ const styles = {
     width: 300,
     height: 80,
     zIndex: 1,
+    padding: '10px 20px',
   },
 }
 
@@ -22,6 +25,12 @@ class SideBar extends Component {
   render() {
     return (
       <Card style={styles.card}>
+        <PrimaryTextField
+          hintText="Search for a place or event"
+          onChange={this.props.onChange}
+          name="search"
+          value={this.props.value}
+        />
       </Card>
     )
   }
