@@ -26,8 +26,14 @@ const rootResolvers = {
   Mutation: {
     createUser: async (root, args) => {
       const { input } = args
-      const createdUser = await createUser(input)
-      return createdUser
+      try {
+        const createdUser = await createUser(input)
+        console.log('created', createdUser)
+        return { user: createdUser }
+      } catch (e) {
+        console.log(e)
+        return { error: { code: e.message } }
+      }
     },
     updateUser: async (root, args) => {
       const { id, input } = args

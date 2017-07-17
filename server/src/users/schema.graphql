@@ -29,7 +29,6 @@ type Friends {
   relationship: Relationship!
 }
 
-
 type UserOutput {
   user: User
   error: Error

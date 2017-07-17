@@ -4,14 +4,11 @@ import { USER_NOT_FOUND, SERVER_ERROR } from '../utils/error'
 
 //  TODO: DEEP MERGE AND ERROR HANDLING
 const createUser = async (data) => {
-  try {
-    const user = new User(data)
-    const savedUser = await user.save()
-    return savedUser.toJSON()
-  } catch (e) {
-    log.fatal(e)
-    return { error: { code: e.message } }
-  }
+  console.log('im here')
+  const user = new User(data)
+  const savedUser = await user.save()
+  console.log(savedUser)
+  return savedUser.toJSON()
 }
 
 const updateUser = async (id, data) => {
