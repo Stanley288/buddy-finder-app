@@ -26,13 +26,22 @@ const rootResolvers = {
   Mutation: {
     createUser: async (root, args) => {
       const { input } = args
-      const createdUser = await createUser(input)
-      return createdUser
+      try {
+        const createdUser = await createUser(input)
+        return { user: createdUser }
+      } catch (e) {
+        throw e
+      }
     },
     updateUser: async (root, args) => {
-      const { id, input } = args
-      const updatedUser = await updateUser(id, input)
-      return updatedUser
+      try {
+        const { id, input } = args
+        const updatedUser = await updateUser(id, input)
+        return updatedUser
+      } catch (e) {
+        console.log('catched at schema,', e)
+        throw e
+      }
     },
   },
 }

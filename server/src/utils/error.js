@@ -1,0 +1,2 @@
+export const USER_NOT_FOUND = 'USER_NOT_FOUND'
+export const SERVER_ERROR = 'SERVER_ERROR'
