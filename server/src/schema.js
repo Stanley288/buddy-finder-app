@@ -28,17 +28,20 @@ const rootResolvers = {
       const { input } = args
       try {
         const createdUser = await createUser(input)
-        console.log('created', createdUser)
         return { user: createdUser }
       } catch (e) {
-        console.log(e)
-        return { error: { code: e.message } }
+        throw e
       }
     },
     updateUser: async (root, args) => {
-      const { id, input } = args
-      const updatedUser = await updateUser(id, input)
-      return updatedUser
+      try {
+        const { id, input } = args
+        const updatedUser = await updateUser(id, input)
+        return updatedUser
+      } catch (e) {
+        console.log('catched at schema,', e)
+        throw e
+      }
     },
   },
 }

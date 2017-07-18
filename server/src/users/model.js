@@ -13,11 +13,10 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
-  connections: [{
+  contacts: [{
     id: {
       type: String,
       required: true,
-      unique: true,
     },
     relationship: {
       type: String,

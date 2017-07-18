@@ -17,7 +17,7 @@ type Mutation {
   updateUser(id: String!, input: UpdateInput!): User
 }
 
-interface Error {
+type Error {
   code: ErrorCode
 }
 

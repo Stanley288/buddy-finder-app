@@ -15,7 +15,7 @@ input UpdateInput {
   age: Int
   gender: String
   name: String
-  connections: [FriendsInput]
+  contacts: [FriendsInput]
   avatar: String
 }
 
@@ -38,7 +38,7 @@ type User {
   id: String!
   authId: String!
   email: String!
-  connections: [Friends]
+  contacts: [Friends]
   age: Int
   gender: String
   name: String
