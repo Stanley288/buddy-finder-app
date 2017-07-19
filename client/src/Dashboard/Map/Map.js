@@ -108,7 +108,7 @@ class Map extends Component {
 
   handlePlacesChanged = () => {
     const places = this.state.searchBar.getPlaces()
-    console.log(places)
+
     // Add a marker for each place returned from search bar
     const placesMarker = places.map(place => this.handleCreateMarker(place.geometry.location))
 
