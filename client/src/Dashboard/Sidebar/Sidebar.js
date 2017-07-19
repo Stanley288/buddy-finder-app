@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Geosuggest from 'react-geosuggest'
 import Radium from 'radium'
 import { Card } from 'material-ui/Card'
-
-import PrimaryTextField from 'components/TextField/PrimaryTextField'
 
 import theme from 'theme'
 
@@ -17,19 +16,32 @@ const styles = {
     zIndex: 1,
     padding: '10px 20px',
   },
+  input: {
+    border: `1px solid ${theme.color.primary}`,
+    backgroundColor: theme.color.white,
+    color: theme.color.black,
+    height: 50,
+    borderRadius: 25,
+    padding: '0 25px',
+    display: 'flex',
+    alignItems: 'center',
+    margin: '5px 0',
+    width: '100%',
+  },
+  suggests: {
+    display: 'none',
+  },
 }
 
 class SideBar extends Component {
   state = {}
 
   render() {
+    const { onChange, value } = this.props
     return (
       <Card style={styles.card}>
-        <PrimaryTextField
-          hintText="Search for a place or event"
-          onChange={this.props.onChange}
-          name="search"
-          value={this.props.value}
+        <Geosuggest
+          style={styles}
         />
       </Card>
     )
