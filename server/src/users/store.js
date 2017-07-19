@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 import User from './model'
 import { USER_NOT_FOUND, SERVER_ERROR } from '../utils/error'
 
