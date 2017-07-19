@@ -3,3 +3,4 @@ dist/
 yarn-error.log
 client/public/index.html
 .DS_Store
+client/config.js

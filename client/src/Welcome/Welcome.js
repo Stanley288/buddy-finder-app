@@ -34,14 +34,14 @@ const styles = {
   },
 }
 
-const Welcome = props => (
+const Welcome = ({ auth }) => (
   <div style={styles.root}>
     <div style={styles.content}>
       <div style={styles.logo}>B<small>F</small></div>
       <div style={styles.slogan}>Insert our fancy slogan here</div>
       <TextField hintText="Username" hintIcon="fa fa-user-circle-o" />
       <TextField hintText="Password" hintIcon="fa fa-lock" />
-      <PrimaryButton rootStyle={styles.buttons}>Log In</PrimaryButton>
+      <PrimaryButton rootStyle={styles.buttons} onClick={auth.login}>Log In</PrimaryButton>
     </div>
   </div>
 )
