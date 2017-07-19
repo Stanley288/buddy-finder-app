@@ -14,12 +14,14 @@ const styles = {
 
 class Map extends Component {
   state = {
+    map: null,
     bounds: null,
     center: { lat: 49.187737, lng: -122.849525 },
     marker: null,
     events: [],
   }
 
+  handleMapMount = map => this.setState({ map })
   handleSearchBarMount = searchBar => this.setState({ searchBar })
 
   handleCreateMarker = location => ({
@@ -33,8 +35,8 @@ class Map extends Component {
   })
 
   handleBoundsChanged = () => this.setState({
-    bounds: this.props.map.getBounds(),
-    center: this.props.map.getCenter(),
+    bounds: this.state.map.getBounds(),
+    center: this.state.map.getCenter(),
   })
 
   handleMarkerRightClick = (targetMarker) => {
@@ -123,7 +125,7 @@ class Map extends Component {
     return (
       <div style={styles.card}>
         <GoogleMap
-          onMapMounted={this.props.onMapMounted}
+          onMapMounted={this.handleMapMount}
           onSearchBarMounted={this.handleSearchBarMount}
           center={this.state.center}
           containerElement={<div style={{ height: '100%' }} />}
