@@ -20,8 +20,6 @@ const rootResolvers = {
       const user = await getUserByEmail(email)
       return user
     },
-    // address: (root, args) => getAddress(args.id),
-    // addresses: (root, args) => getAllAddresses(args.address, args.service, args.limit),
   },
   Mutation: {
     createUser: async (root, args) => {
@@ -39,7 +37,6 @@ const rootResolvers = {
         const updatedUser = await updateUser(id, input)
         return updatedUser
       } catch (e) {
-        console.log('catched at schema,', e)
         throw e
       }
     },

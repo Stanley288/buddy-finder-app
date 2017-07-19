@@ -16,7 +16,6 @@ input UpdateInput {
   gender: String
   name: String
   contacts: [FriendsInput]
-  avatar: String
 }
 
 input FriendsInput {
@@ -42,5 +41,4 @@ type User {
   age: Int
   gender: String
   name: String
-  avatar: String
 }
