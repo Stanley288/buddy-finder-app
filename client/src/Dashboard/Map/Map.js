@@ -14,6 +14,7 @@ const styles = {
 
 class Map extends Component {
   state = {
+    map: null,
     bounds: null,
     center: { lat: 49.187737, lng: -122.849525 },
     marker: null,
@@ -100,12 +101,14 @@ class Map extends Component {
     //   ],
     // })
     this.setState({
+      center: event.latLng,
       marker: this.handleCreateMarker(event.latLng),
     })
   }
 
   handlePlacesChanged = () => {
     const places = this.state.searchBar.getPlaces()
+
     // Add a marker for each place returned from search bar
     const placesMarker = places.map(place => this.handleCreateMarker(place.geometry.location))
 
@@ -132,7 +135,6 @@ class Map extends Component {
           marker={this.state.marker}
           events={this.state.events}
           onPlacesChanged={this.handlePlacesChanged}
-          searchBar
         />
       </div>
     )

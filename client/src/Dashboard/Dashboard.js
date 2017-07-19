@@ -29,12 +29,26 @@ const styles = {
 }
 
 class Dashboard extends Component {
-  state = {}
+  state = {
+    search: '',
+  }
+
+  handleOnChange = (event) => {
+    const { value, name } = event.target
+
+    this.setState({
+      [name]: value,
+    })
+  }
 
   render() {
     return (
       <div style={styles.root}>
         <NavBar style={styles.navBar} title="Buddy Finder" />
+        <Sidebar
+          value={this.state.search}
+          onChange={this.handleOnChange}
+        />
         <div style={styles.dashboard}>
           <div style={styles.map}>
             <Map />
