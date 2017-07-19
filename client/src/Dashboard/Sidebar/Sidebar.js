@@ -6,27 +6,30 @@ import { Card } from 'material-ui/Card'
 
 import theme from 'theme'
 
+import Suggests from './Suggests'
+
 const styles = {
   card: {
     position: 'absolute',
     top: 60,
     left: 10,
     width: 300,
-    height: 80,
     zIndex: 1,
     padding: '10px 20px',
+    backgroundColor: theme.color.black,
   },
   input: {
-    border: `1px solid ${theme.color.primary}`,
-    backgroundColor: theme.color.white,
-    color: theme.color.black,
+    color: theme.color.white,
+    border: 'none',
     height: 50,
     borderRadius: 25,
     padding: '0 25px',
     display: 'flex',
     alignItems: 'center',
     margin: '5px 0',
+    outline: 'none',
     width: '100%',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
   suggests: {
     display: 'none',
@@ -34,16 +37,31 @@ const styles = {
 }
 
 class SideBar extends Component {
-  state = {}
+  state = {
+    selected: null,
+    suggests: [],
+  }
+
+  onSelect = (suggest) => {
+    this.setState({
+      selected: suggest,
+      suggests: [],
+    })
+  }
+
+  getSuggests = suggests => this.setState({ suggests })
 
   render() {
-    const { onChange, value } = this.props
     // TODO: define bounds
     return (
       <Card style={styles.card}>
         <Geosuggest
           style={styles}
-          getSuggests={suggests => console.log(suggests)}
+          getSuggests={this.getSuggests}
+        />
+        <Suggests
+          onSelect={this.onSelect}
+          suggests={this.state.suggests}
         />
       </Card>
     )
