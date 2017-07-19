@@ -1,5 +1,4 @@
 import auth0 from 'auth0-js'
-import { browserHistory } from 'react-router-dom'
 
 import { authConfig } from '../config'
 
@@ -18,33 +17,35 @@ export default class Auth {
     this.auth.authorize()
   }
 
-  logout = () => {
+  logout = (history) => {
     // Clear access token and ID token from local storage
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
     // navigate to login page
-    browserHistory.push('/')
+    history.push('/')
   }
 
-  handleAuthentication = () => {
-    this.auth.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult)
-      } else if (err) {
-        console.log(err)
-      }
-    })
+  handleAuthentication = (props) => {
+    if (/access_token|id_token|error/.test(props.location.hash)) {
+      this.auth.parseHash((err, authResult) => {
+        if (authResult && authResult.accessToken && authResult.idToken) {
+          this.setSession(authResult, props.history)
+        } else if (err) {
+          console.log(err)
+        }
+      })
+    }
   }
 
-  setSession = (authResult) => {
+  setSession = (authResult, history) => {
     // Set the time that the access token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime())
     localStorage.setItem('access_token', authResult.accessToken)
     localStorage.setItem('id_token', authResult.idToken)
     localStorage.setItem('expires_at', expiresAt)
     // navigate to dashboard
-    browserHistory.push('/dashboard')
+    history.push('/dashboard')
   }
 
   isAuthenticated = () => {
