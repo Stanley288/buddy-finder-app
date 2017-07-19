@@ -38,6 +38,7 @@ class SideBar extends Component {
 
   render() {
     const { onChange, value } = this.props
+    // TODO: define bounds
     return (
       <Card style={styles.card}>
         <Geosuggest
