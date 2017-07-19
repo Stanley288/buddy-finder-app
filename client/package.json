@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "apollo-client": "1.2.2",
+    "auth0-js": "^8.8.0",
     "babel-polyfill": "6.23.0",
     "fastclick": "1.0.6",
     "font-awesome": "^4.7.0",
