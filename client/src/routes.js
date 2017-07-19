@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, browserHistory, Route } from 'react-router-dom'
+import { BrowserRouter as Router, browserHistory, Route, Redirect } from 'react-router-dom'
 
 import Welcome from './Welcome'
 import Loading from './Welcome/Loading'
@@ -29,7 +29,14 @@ export default () => (
           return <Loading {...props} />
         }}
       />
-      <Route path="/dashboard" component={Dashboard} />
+      <Route
+        path="/dashboard"
+        render={props => (
+          auth.isAuthenticated() ?
+            <Dashboard {...props} auth={auth} /> :
+            <Redirect to="/" />
+        )}
+      />
     </div>
   </Router>
 )
