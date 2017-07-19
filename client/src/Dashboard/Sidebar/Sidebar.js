@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Geosuggest from 'react-geosuggest'
+import Geosuggest from 'react-geosuggest-updated'
 import Radium from 'radium'
 import { Card } from 'material-ui/Card'
 
@@ -43,6 +43,7 @@ class SideBar extends Component {
       <Card style={styles.card}>
         <Geosuggest
           style={styles}
+          getSuggests={suggests => console.log(suggests)}
         />
       </Card>
     )
