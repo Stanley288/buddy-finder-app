@@ -38,15 +38,7 @@ const styles = {
 
 class SideBar extends Component {
   state = {
-    selected: null,
     suggests: [],
-  }
-
-  onSelect = (suggest) => {
-    this.setState({
-      selected: suggest,
-      suggests: [],
-    })
   }
 
   getSuggests = suggests => this.setState({ suggests })
@@ -60,7 +52,7 @@ class SideBar extends Component {
           getSuggests={this.getSuggests}
         />
         <Suggests
-          onSelect={this.onSelect}
+          onSelect={this.props.onSelect}
           suggests={this.state.suggests}
         />
       </Card>
