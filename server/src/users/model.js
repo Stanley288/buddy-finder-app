@@ -25,7 +25,6 @@ const UserSchema = new Schema({
     },
   }],
   gender: String,
-  avatar: String,
   age: Number,
   name: String,
   updatedAt: Date,

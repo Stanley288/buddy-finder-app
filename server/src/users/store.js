@@ -1,7 +1,6 @@
 import User from './model'
 import { USER_NOT_FOUND, SERVER_ERROR } from '../utils/error'
 
-//  TODO: DEEP MERGE AND ERROR HANDLING
 const createUser = async (data) => {
   const user = new User(data)
   const savedUser = await user.save()
