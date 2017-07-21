@@ -50,10 +50,14 @@ const SideBar = ({ getSuggests, onSelect, suggests }) => (
 )
 
 SideBar.propTypes = {
+  suggests: PropTypes.arrayOf(PropTypes.object),
   onSelect: PropTypes.func,
+  getSuggests: PropTypes.func,
 }
 SideBar.defaultProps = {
+  suggests: [],
   onSelect: () => {},
+  getSuggests: () => {},
 }
 
 export default Radium(SideBar)
