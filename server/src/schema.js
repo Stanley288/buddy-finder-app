@@ -5,6 +5,9 @@ import { makeExecutableSchema } from 'graphql-tools'
 
 import { schema as usersSchema, resolvers as usersResolvers } from './users/schema'
 import { getUserById, getUserByEmail, createUser } from './users/store'
+// KC >
+import { createEvent, getEventById, getEventByGeolocation, getEventByTitle } from './events/store'
+// KC <
 
 const rootSchema = [fs.readFileSync(join(__dirname, 'schema.graphql'), 'utf-8')]
 
@@ -20,6 +23,16 @@ const rootResolvers = {
       const user = await getUserByEmail(email)
       return user
     },
+    event: async (root, args) => {
+      const { id } = args
+      const event = await getEventById(id)
+      return event
+    },
+    eventByTitle: async (root, args) => {
+      const { title } = args
+      const event = await getEventByTitle(title)
+      return event
+    },
     // address: (root, args) => getAddress(args.id),
     // addresses: (root, args) => getAllAddresses(args.address, args.service, args.limit),
   },
@@ -29,6 +42,11 @@ const rootResolvers = {
       const createdUser = await createUser(input)
       return createdUser
     },
+    createEvent: async (root, args) => {
+      const { input } = args
+      const createdEvent = await createEvent(input)
+      return createdEvent
+    }
   },
 }
 
