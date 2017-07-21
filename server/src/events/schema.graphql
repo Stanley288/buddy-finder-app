@@ -1,0 +1,48 @@
+type Event {
+  id: String!
+  onwer: String!
+  location: Location!
+  participants: [String!]
+  capSize: Int!
+  title: String!
+  date: String!
+  description: String
+}
+
+type Location {
+  address: String!
+  city: String!
+  latitude: Float!
+  longitude: Float!
+}
+
+input locationInput {
+  address: String!
+  latitude: Float!
+  longitude: Float!
+}
+
+input EventInput {
+  onwer: String!
+  location: locationInput!
+  participants: [String!]
+  capSize: Int!
+  title: String!
+  time: String!
+}
+
+
+#
+# type Query {
+#   # Find event by id
+#   event(id: String!): Event
+#
+#   # Find event by title
+#   eventByTitle(title: String!): Event
+# }
+
+# type Mutation {
+#   # Create event
+#   # createEvent(input: EventInput!): EventOutput!
+# #  updateEvent(id: String!, input: UpdateInput!): Event
+# }

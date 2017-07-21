@@ -1,8 +1,25 @@
 import mongoose, { Schema } from 'mongoose'
 
 const EventSchema = new Schema({
-  geolocation: {
+  onwer: {
     type: String,
+    required: true,
+  },
+  location: {
+    type: [{
+      address: {
+        type: String,
+        required: true,
+      },
+      longitude: {
+        type: Number,
+        required: true,
+      },
+      latitude: {
+        type: Number,
+        required: true,
+      },
+    }],
     required: true,
   },
   participants: {
@@ -21,11 +38,15 @@ const EventSchema = new Schema({
     type: Date,
     required: true,
   },
+  description: String,
 })
 
 EventSchema.set('toJSON', {
   transform: (doc, ret) => {
     /* eslint-disable no-param-reassign,no-underscore-dangle */
+    ret.id = ret._id
+    delete ret._id
+    delete ret.__v
   },
 })
 

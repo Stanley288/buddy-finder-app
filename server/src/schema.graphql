@@ -4,17 +4,34 @@ enum ErrorCode {
 }
 
 type Query {
+## users ##
+
   # Find user by id
   user(id: String!): User
-
   # Find user by email
   userByEmail(email: String!): User
+
+## events ##
+
+  # Find event by id
+  event(id: String!): Event
+  # Find event by title
+  eventByTitle(title: String!): Event
+  # Find event by location
+  eventByLocation(location: locationInput!, distance: Int!): Event
 }
 
 type Mutation {
+  ## users ##
+
   # Create user
   createUser(input: SignupInput!): UserOutput!
+  # Update user
   updateUser(id: String!, input: UpdateInput!): User
+
+  ## events ##
+
+  createEvent(input: EventInput!): Event!
 }
 
 type Error {
