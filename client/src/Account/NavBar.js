@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Radium from 'radium'
 
 import { Circle } from 'react-feather'
@@ -21,14 +21,23 @@ const styles = {
     textDecoration: 'none',
     color: theme.color.black,
   },
+  activeLink: {
+    color: theme.color.primary,
+  },
 }
 
 const NavBar = () => (
   <div style={styles.root}>
     <Circle size={40} />
-    <div style={styles.option}><Link style={styles.link} to="/account/settings">Settings</Link></div>
-    <div style={styles.option}><Link style={styles.link} to="/account/events">Events</Link></div>
-    <div style={styles.option}><Link style={styles.link} to="/account/friends">Friends</Link></div>
+    <div style={styles.option}>
+      <NavLink style={styles.link} activeStyle={styles.activeLink} to="/account/settings">Settings</NavLink>
+    </div>
+    <div style={styles.option}>
+      <NavLink style={styles.link} activeStyle={styles.activeLink} to="/account/events">Events</NavLink>
+    </div>
+    <div style={styles.option}>
+      <NavLink style={styles.link} activeStyle={styles.activeLink} to="/account/friends">Friends</NavLink>
+    </div>
   </div>
 )
 
