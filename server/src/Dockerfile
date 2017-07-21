@@ -18,4 +18,6 @@ CMD npm run serve
 # bundle app source code
 COPY . /app
 
-EXPOSE 3000
+EXPOSE 8080
+
+HEALTHCHECK CMD curl --fail http://localhost:8080/ || exit 1
