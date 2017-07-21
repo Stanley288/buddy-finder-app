@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Radium from 'radium'
 import { User } from 'react-feather'
 
 import NavBar from 'components/NavBar'
+import theme from 'theme'
+
 import Map from './Map'
 import Sidebar from './Sidebar'
 import { actions } from './dashboard.module'
@@ -24,6 +27,9 @@ const styles = {
   },
   map: {
     flex: 1,
+  },
+  userIconLink: {
+    color: theme.color.black,
   },
 }
 
@@ -52,7 +58,8 @@ class Dashboard extends Component {
         <NavBar
           style={styles.navBar}
           title="Buddy Finder"
-          iconElementRight={<User />}
+          iconElementRight={<Link to="/account" style={styles.userIconLink}><User /></Link>}
+          iconStyleRight={{ margin: 'auto' }}
         />
         <Sidebar
           suggests={this.state.suggests}

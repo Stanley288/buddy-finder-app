@@ -4,6 +4,7 @@ import { BrowserRouter as Router, browserHistory, Route, Redirect } from 'react-
 import Welcome from './Welcome'
 import Loading from './Welcome/Loading'
 import Dashboard from './Dashboard'
+import Account from './Account'
 
 import Auth from './auth'
 
@@ -34,6 +35,14 @@ export default () => (
         render={props => (
           auth.isAuthenticated() ?
             <Dashboard {...props} auth={auth} /> :
+            <Redirect to="/" />
+        )}
+      />
+      <Route
+        path="/account"
+        render={props => (
+          auth.isAuthenticated() ?
+            <Account {...props} auth={auth} /> :
             <Redirect to="/" />
         )}
       />
