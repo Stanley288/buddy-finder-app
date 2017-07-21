@@ -24,7 +24,7 @@ const Suggests = ({ onSelect, suggests }) => (
         <button
           style={styles.suggest}
           key={suggest.placeId}
-          onClick={onSelect}
+          onClick={() => onSelect(suggest)}
         >
           {suggest.label}
         </button>

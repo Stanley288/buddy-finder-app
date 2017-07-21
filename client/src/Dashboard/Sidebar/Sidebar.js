@@ -36,28 +36,36 @@ const styles = {
   },
 }
 
-const SideBar = ({ getSuggests, onSelect, suggests }) => (
-  <Card style={styles.card}>
-    <Geosuggest
-      style={styles}
-      getSuggests={getSuggests}
-    />
-    <Suggests
-      onSelect={onSelect}
-      suggests={suggests}
-    />
-  </Card>
-)
+class SideBar extends Component {
+  render() {
+    const { handleRef, suggests, getSuggests, onSelect } = this.props
+    return (
+      <Card style={styles.card}>
+        <Geosuggest
+          ref={el => handleRef(el)}
+          style={styles}
+          getSuggests={getSuggests}
+        />
+        <Suggests
+          onSelect={onSelect}
+          suggests={suggests}
+        />
+      </Card>
+    )
+  }
+}
 
 SideBar.propTypes = {
   suggests: PropTypes.arrayOf(PropTypes.object),
   onSelect: PropTypes.func,
   getSuggests: PropTypes.func,
+  handleRef: PropTypes.func,
 }
 SideBar.defaultProps = {
   suggests: [],
   onSelect: () => {},
   getSuggests: () => {},
+  handleRef: () => {},
 }
 
 export default Radium(SideBar)

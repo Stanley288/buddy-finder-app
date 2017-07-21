@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import PropTypes from 'prop-types'
 import Radium from 'radium'
-import theme from 'theme'
 
 import NavBar from 'components/NavBar'
 import Map from './Map'
@@ -35,6 +33,7 @@ class Dashboard extends Component {
   }
 
   onSelect = (suggest) => {
+    this.geoSuggest.update(suggest.label)
     this.setState({
       selected: suggest,
       suggests: [],
@@ -43,21 +42,17 @@ class Dashboard extends Component {
 
   getSuggests = suggests => this.setState({ suggests })
 
-  handleOnChange = (event) => {
-    const { value, name } = event.target
-
-    this.setState({
-      [name]: value,
-    })
-  }
+  // saving getSuggest in state causes stack overflow
+  handleGeoSuggestRef = e => (this.geoSuggest = e)
 
   render() {
     return (
       <div style={styles.root}>
         <NavBar style={styles.navBar} title="Buddy Finder" />
         <Sidebar
-          onSelect={this.onSelect}
           suggests={this.state.suggests}
+          handleRef={this.handleGeoSuggestRef}
+          onSelect={this.onSelect}
           getSuggests={this.getSuggests}
         />
         <div style={styles.dashboard}>
