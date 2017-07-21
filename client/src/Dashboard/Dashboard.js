@@ -28,7 +28,7 @@ const styles = {
 
 class Dashboard extends Component {
   state = {
-    selected: null,
+    selected: {},
     suggests: [],
   }
 
