@@ -42,6 +42,7 @@ class SideBar extends Component {
     return (
       <Card style={styles.card}>
         <Geosuggest
+          country="ca"
           ref={el => handleRef(el)}
           style={styles}
           getSuggests={getSuggests}
