@@ -7,7 +7,7 @@ import theme from 'theme'
 
 const createStyles = ({ height }) => ({
   appBarRoot: {
-    backgroundColor: theme.color.black,
+    backgroundColor: theme.color.white,
     height: '100%',
   },
   title: {
