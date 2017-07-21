@@ -5,8 +5,21 @@ const EventSchema = new Schema({
     type: String,
     required: true,
   },
-  geolocation: {
-    type: String,
+  location: {
+    type: [{
+      address: {
+        type: String,
+        required: true,
+      },
+      city: {
+        type: String,
+        required: true,
+      },
+      : {
+        type: String,
+        required: true,
+      }
+    }],
     required: true,
   },
   participants: {
@@ -25,6 +38,7 @@ const EventSchema = new Schema({
     type: Date,
     required: true,
   },
+  description: String,
 })
 
 EventSchema.set('toJSON', {

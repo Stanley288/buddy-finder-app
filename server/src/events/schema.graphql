@@ -1,20 +1,39 @@
 type Event {
   id: String!
   onwer: String!
-  geolocation: String!
+  location: Location!
+  participants: [String!]
+  capSize: Int!
+  title: String!
+  date: String!
+  description: String
+}
+
+type Location {
+  address: String!
+  latitude: Float!
+  longitude: Float!
+}
+
+type address {
+  street: String!
+  city: String!
+  country: String!
+}
+
+input EventInput {
+  onwer: String!
+  location: location!
   participants: [String!]
   capSize: Int!
   title: String!
   time: String!
 }
 
-input EventInput {
-  onwer: String!
-  geolocation: String!
-  participants: [String!]
-  capSize: Int!
-  title: String!
-  time: String!
+input locationInput {
+  address: String!
+  latitude: Float!
+  longitude: Float!
 }
 
 #

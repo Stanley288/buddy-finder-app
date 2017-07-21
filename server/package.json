@@ -19,6 +19,7 @@
     "bunyan": "^1.8.10",
     "doctor-zhivago": "^1.4.5",
     "express": "^4.15.2",
+    "google-distance": "^1.0.1",
     "graphql": "^0.10.3",
     "graphql-server-express": "^1.0.0",
     "graphql-tools": "^1.1.0",

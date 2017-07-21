@@ -15,6 +15,9 @@ type Query {
 
   # Find event by title
   eventByTitle(title: String!): Event
+
+  # Find event by location
+  eventByLocation(location: locationInput!, distance: Int!): Event
 }
 
 type Mutation {
