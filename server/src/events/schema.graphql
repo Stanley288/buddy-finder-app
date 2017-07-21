@@ -16,15 +16,8 @@ type Location {
   longitude: Float!
 }
 
-type address {
-  street: String!
-  city: String!
-  country: String!
-}
-
 input locationInput {
   address: String!
-  city: String!
   latitude: Float!
   longitude: Float!
 }

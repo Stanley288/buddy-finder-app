@@ -14,8 +14,13 @@ const getEventById = async (id) => {
 
 const getEventByLocation = async (userLocation, distance) => {
   try {
+    // i find the filter by city doesnt really work, so let's just stick with the stupid way for now
+    // TODO: I use the get distance function I made, can you test and make sure it work since i didnt test it
 
-    // TODO: use the get distance function I made
+    const allEvents = await Event.find({})
+
+    //  filter events within the radius
+    const events = allEvents.filter(event => (getDistance(userLocation, event.location) <= distance))
 
     return events
   } catch (e) {
@@ -28,4 +33,4 @@ const getEventByTitle = async (title) => {
   return event
 }
 
-export default { createEvent, getEventById, getEventByTitle }
+export default { createEvent, getEventById, getEventByTitle, getEventByLocation }
