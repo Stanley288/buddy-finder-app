@@ -7,13 +7,15 @@ import theme from 'theme'
 
 const styles = {
   root: {
+    width: 200,
+    textAlign: 'left',
+  },
+  optionsList: {
+    textAlign: 'left',
   },
   option: {
     margin: '20px 0',
     fontSize: 18,
-  },
-  avatar: {
-    textAlign: 'center',
   },
   link: {
     textDecoration: 'none',
@@ -23,7 +25,7 @@ const styles = {
 
 const NavBar = () => (
   <div style={styles.root}>
-    <div style={styles.avatar}><Circle size={40} /></div>
+    <Circle size={40} />
     <div style={styles.option}><Link style={styles.link} to="/account/settings">Settings</Link></div>
     <div style={styles.option}><Link style={styles.link} to="/account/events">Events</Link></div>
     <div style={styles.option}><Link style={styles.link} to="/account/friends">Friends</Link></div>

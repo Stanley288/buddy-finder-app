@@ -13,6 +13,8 @@ const styles = {
     padding: 50,
   },
   content: {
+    flex: 4,
+    padding: '0 30px',
   },
 }
 
@@ -23,7 +25,7 @@ class Account extends Component {
     return (
       <div style={styles.root}>
         <NavBar />
-        <div>
+        <div style={styles.content}>
           <Redirect from="/account" to="/account/settings" />
           <Route exact path="/account/settings" component={Settings} />
           <Route exact path="/account/events" component={() => <div>Events Page</div>} />

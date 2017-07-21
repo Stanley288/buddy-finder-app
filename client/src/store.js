@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import { ApolloClient, createNetworkInterface } from 'react-apollo'
 
-import rootReducer from './reducers'
+import dashboard from './Dashboard/dashboard.module'
 
 // Setup Apollo client
 export const client = new ApolloClient({
@@ -18,23 +18,16 @@ export function configureStore(initialState = {}) {
     applyMiddleware(thunk, logger, client.middleware()),
   ]
 
+  const reducers = combineReducers({
+    dashboard,
+    apollo: client.reducer(),
+  })
+
   const store = createStore(
-    combineReducers({
-      rootReducer,
-      apollo: client.reducer(),
-    }),
+    reducers,
     initialState,
     compose(...enhancers),
   )
-
-  // For hot reloading reducers
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      const nextReducer = require('./reducers').default // eslint-disable-line
-
-      store.replaceReducer(nextReducer)
-    })
-  }
 
   return store
 }

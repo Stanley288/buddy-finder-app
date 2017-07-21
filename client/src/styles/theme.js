@@ -16,6 +16,12 @@ const theme = {
   borderRadius: {
     regular: 6,
   },
+  separator: {
+    height: 1,
+    backgroundColor: '#41414C',
+    width: '100%',
+    margin: '20px 0',
+  },
 }
 
 export default theme
