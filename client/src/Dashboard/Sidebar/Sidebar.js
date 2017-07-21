@@ -15,21 +15,21 @@ const styles = {
     left: 10,
     width: 300,
     zIndex: 1,
-    padding: '10px 20px',
-    backgroundColor: theme.color.black,
+    padding: '0 20px',
+    backgroundColor: theme.color.white,
   },
   input: {
-    color: theme.color.white,
-    border: 'none',
+    color: theme.color.black,
+    border: theme.border.primary,
     height: 50,
     borderRadius: 25,
     padding: '0 25px',
     display: 'flex',
     alignItems: 'center',
-    margin: '5px 0',
+    margin: '15px 0',
     outline: 'none',
     width: '100%',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'transparent',
   },
   suggests: {
     display: 'none',
@@ -37,30 +37,36 @@ const styles = {
 }
 
 class SideBar extends Component {
-  state = {
-    suggests: [],
-  }
-
-  getSuggests = suggests => this.setState({ suggests })
-
   render() {
-    // TODO: define bounds
+    const { handleRef, suggests, getSuggests, onSelect } = this.props
     return (
       <Card style={styles.card}>
         <Geosuggest
+          country="ca"
+          ref={el => handleRef(el)}
           style={styles}
-          getSuggests={this.getSuggests}
+          getSuggests={getSuggests}
         />
         <Suggests
-          onSelect={this.props.onSelect}
-          suggests={this.state.suggests}
+          onSelect={onSelect}
+          suggests={suggests}
         />
       </Card>
     )
   }
 }
 
-SideBar.propTypes = {}
-SideBar.defaultProps = {}
+SideBar.propTypes = {
+  suggests: PropTypes.arrayOf(PropTypes.object),
+  onSelect: PropTypes.func,
+  getSuggests: PropTypes.func,
+  handleRef: PropTypes.func,
+}
+SideBar.defaultProps = {
+  suggests: [],
+  onSelect: () => {},
+  getSuggests: () => {},
+  handleRef: () => {},
+}
 
 export default Radium(SideBar)

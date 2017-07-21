@@ -20,7 +20,7 @@ const styles = {
   slogan: {
     fontSize: 30,
     color: theme.color.white,
-    margin: '0 0 40px',
+    margin: '0 0 20px',
   },
   content: {
     display: 'flex',
@@ -39,8 +39,6 @@ const Welcome = ({ auth }) => (
     <div style={styles.content}>
       <div style={styles.logo}>B<small>F</small></div>
       <div style={styles.slogan}>Insert our fancy slogan here</div>
-      <TextField hintText="Username" hintIcon="fa fa-user-circle-o" />
-      <TextField hintText="Password" hintIcon="fa fa-lock" />
       <PrimaryButton rootStyle={styles.buttons} onClick={auth.login}>Log In</PrimaryButton>
     </div>
   </div>

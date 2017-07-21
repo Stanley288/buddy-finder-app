@@ -21,6 +21,13 @@ class Map extends Component {
     events: [],
   }
 
+  componentWillReceiveProps = (nextProps) => {
+    const location = nextProps.selected.location
+    this.setState({
+      marker: this.handleCreateMarker(location),
+    })
+  }
+
   handleMapMount = map => this.setState({ map })
   handleSearchBarMount = searchBar => this.setState({ searchBar })
 
@@ -141,7 +148,15 @@ class Map extends Component {
   }
 }
 
-Map.propTypes = {}
-Map.defaultProps = {}
+Map.propTypes = {
+  selected: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.object,
+  ])),
+}
+Map.defaultProps = {
+  selected: {},
+}
 
 export default Radium(Map)

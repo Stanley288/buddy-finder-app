@@ -6,13 +6,14 @@ import theme from 'theme'
 
 const styles = {
   suggest: {
+    width: 300,
     outline: 'none',
     border: 'none',
-    width: '100%',
-    padding: '15px 10px',
+    padding: '15px 30px',
+    margin: '0 -20px',
     color: theme.color.primary,
     backgroundColor: theme.color.white,
-    borderRadius: theme.borderRadius.regular,
+    textAlign: 'left',
   },
 }
 
@@ -23,7 +24,7 @@ const Suggests = ({ onSelect, suggests }) => (
         <button
           style={styles.suggest}
           key={suggest.placeId}
-          onClick={onSelect}
+          onClick={() => onSelect(suggest)}
         >
           {suggest.label}
         </button>
