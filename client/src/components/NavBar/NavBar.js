@@ -22,11 +22,24 @@ const createStyles = ({ height }) => ({
 const NavBar = ({ style, titleStyle, showMenuIconButton, ...props }) => {
   const styles = createStyles(style)
   return (
-    <AppBar style={{ ...styles.appBarRoot, ...style }} titleStyle={styles.title} showMenuIconButton={false} {...props} />
+    <AppBar
+      style={{ ...styles.appBarRoot, ...style }}
+      titleStyle={styles.title}
+      showMenuIconButton={false}
+      {...props}
+    />
   )
 }
 
-NavBar.propTypes = {}
-NavBar.defaultProps = {}
+NavBar.propTypes = {
+  style: PropTypes.objectOf(PropTypes.string),
+  titleStyle: PropTypes.objectOf(PropTypes.string),
+  showMenuIconButton: PropTypes.bool,
+}
+NavBar.defaultProps = {
+  style: {},
+  titleStyle: {},
+  showMenuIconButton: false,
+}
 
 export default Radium(NavBar)

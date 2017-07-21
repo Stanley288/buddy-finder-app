@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Radium from 'radium'
+import { User } from 'react-feather'
 
 import NavBar from 'components/NavBar'
 import Map from './Map'
@@ -48,7 +49,11 @@ class Dashboard extends Component {
   render() {
     return (
       <div style={styles.root}>
-        <NavBar style={styles.navBar} title="Buddy Finder" />
+        <NavBar
+          style={styles.navBar}
+          title="Buddy Finder"
+          iconElementRight={<User />}
+        />
         <Sidebar
           suggests={this.state.suggests}
           handleRef={this.handleGeoSuggestRef}
