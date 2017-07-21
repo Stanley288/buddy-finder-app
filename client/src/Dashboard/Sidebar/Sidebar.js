@@ -36,31 +36,24 @@ const styles = {
   },
 }
 
-class SideBar extends Component {
-  state = {
-    suggests: [],
-  }
+const SideBar = ({ getSuggests, onSelect, suggests }) => (
+  <Card style={styles.card}>
+    <Geosuggest
+      style={styles}
+      getSuggests={getSuggests}
+    />
+    <Suggests
+      onSelect={onSelect}
+      suggests={suggests}
+    />
+  </Card>
+)
 
-  getSuggests = suggests => this.setState({ suggests })
-
-  render() {
-    // TODO: define bounds
-    return (
-      <Card style={styles.card}>
-        <Geosuggest
-          style={styles}
-          getSuggests={this.getSuggests}
-        />
-        <Suggests
-          onSelect={this.props.onSelect}
-          suggests={this.state.suggests}
-        />
-      </Card>
-    )
-  }
+SideBar.propTypes = {
+  onSelect: PropTypes.func,
 }
-
-SideBar.propTypes = {}
-SideBar.defaultProps = {}
+SideBar.defaultProps = {
+  onSelect: () => {},
+}
 
 export default Radium(SideBar)

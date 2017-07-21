@@ -9,10 +9,11 @@ const styles = {
     width: 300,
     outline: 'none',
     border: 'none',
-    padding: '15px 10px',
+    padding: '15px 30px',
     margin: '0 -20px',
     color: theme.color.primary,
     backgroundColor: theme.color.white,
+    textAlign: 'left',
   },
 }
 
