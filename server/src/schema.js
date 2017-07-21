@@ -5,7 +5,6 @@ import { makeExecutableSchema } from 'graphql-tools'
 
 import { schema as usersSchema, resolvers as usersResolvers } from './users/schema'
 import { getUserById, getUserByEmail, createUser, updateUser } from './users/store'
-
 import { getEventById, getEventByTitle, getEventByLocation, createEvent } from './events/store'
 import { schema as eventsSchema, resolvers as eventsResolvers } from './events/schema'
 
@@ -68,20 +67,9 @@ const rootResolvers = {
       }
     },
   },
-  // updateEvent: async (root, args) => {
-  //   try {
-  //     const { id, input } = args
-  //     const updatedEvent = await updateEvent(id, input)
-  //     return updatedEvent
-  //   } catch (e) {
-  //     throw e
-  //   }
-  // },
 }
-
 const schema = [...rootSchema, ...usersSchema, ...eventsSchema]
 const resolvers = merge(rootResolvers, usersResolvers, eventsResolvers)
-
 const executableSchema = makeExecutableSchema({
   typeDefs: schema,
   resolvers,

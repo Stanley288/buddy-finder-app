@@ -15,10 +15,14 @@ const EventSchema = new Schema({
         type: String,
         required: true,
       },
-      : {
-        type: String,
+      longitude: {
+        type: Number,
         required: true,
-      }
+      },
+      latitude: {
+        type: Number,
+        required: true,
+      },
     }],
     required: true,
   },

@@ -1,6 +1,5 @@
-import dist from 'google-distance'
+import { getDistance } from './utils'
 import Event from './model'
-
 
 const createEvent = async (eventData) => {
   const event = new Event(eventData)
@@ -15,20 +14,10 @@ const getEventById = async (id) => {
 
 const getEventByLocation = async (userLocation, distance) => {
   try {
-    const eventLocation = 'asdf' // from database
-    const promise = new Promise((resolve, reject) => {
-      const event = dist.get(
-        { origins: [userLocation, eventLocation] },
-        (err, data) => {
-          if (err) {
-            reject(err)
-          }
 
-          resolve(data.distance <= distance)
-        },
-      )
-    })
-    return event
+    // TODO: use the get distance function I made
+
+    return events
   } catch (e) {
     throw e
   }

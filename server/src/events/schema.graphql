@@ -11,6 +11,7 @@ type Event {
 
 type Location {
   address: String!
+  city: String!
   latitude: Float!
   longitude: Float!
 }
@@ -21,20 +22,22 @@ type address {
   country: String!
 }
 
+input locationInput {
+  address: String!
+  city: String!
+  latitude: Float!
+  longitude: Float!
+}
+
 input EventInput {
   onwer: String!
-  location: location!
+  location: locationInput!
   participants: [String!]
   capSize: Int!
   title: String!
   time: String!
 }
 
-input locationInput {
-  address: String!
-  latitude: Float!
-  longitude: Float!
-}
 
 #
 # type Query {
