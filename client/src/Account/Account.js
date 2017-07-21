@@ -28,6 +28,8 @@ class Account extends Component {
         <div>
           <Redirect from="/account" to="/account/settings" />
           <Route exact path="/account/settings" component={() => <div>Settings Page</div>} />
+          <Route exact path="/account/events" component={() => <div>Events Page</div>} />
+          <Route exact path="/account/friends" component={() => <div>Friends Page</div>} />
         </div>
       </div>
     )
