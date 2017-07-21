@@ -1,25 +1,27 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-const TEST_REDUCER = 'TEST_REDUCER'
+const SAVE_PLACES = 'SAVE_PLACES'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const testReducer = () => ({
-  type: TEST_REDUCER,
+export const savePlaces = places => ({
+  type: SAVE_PLACES,
+  places,
 })
 
 export const actions = {
-  testReducer,
+  savePlaces,
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [TEST_REDUCER]: state => ({
+  [SAVE_PLACES]: (state, { places }) => ({
     ...state,
+    places,
   }),
 }
 

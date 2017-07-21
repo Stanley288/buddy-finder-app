@@ -23,7 +23,7 @@ const config = {
   // Options affecting the output of the compilation
   output: {
     path: path.resolve(__dirname, '../public/dist'),
-    publicPath: isDebug ? `http://localhost:${process.env.PORT || 8080}/dist/` : '/dist/',
+    publicPath: isDebug ? `http://localhost:${process.env.PORT || 8085}/dist/` : '/dist/',
     filename: isDebug ? '[name].js?[hash]' : '[name].[hash].js',
     chunkFilename: isDebug ? '[id].js?[chunkhash]' : '[id].[chunkhash].js',
     sourcePrefix: '  ',
@@ -33,6 +33,7 @@ const config = {
     alias: {
       components: path.resolve(__dirname, '../src/components/'),
       theme: path.resolve(__dirname, '../src/styles/theme.js'),
+      utils: path.resolve(__dirname, '../src/utils/'),
     },
   },
 

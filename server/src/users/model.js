@@ -1,5 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 
+const relationshipStatuses = ['BEFRIENDED', 'PENDING', 'REQUESTED', 'BLOCKED', 'DELETED']
+
 const UserSchema = new Schema({
   authId: {
     type: String,
@@ -11,11 +13,18 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
-  friends: [String],
-  friendsRequested: [String],
-  friendsPending: [String],
+  contacts: [{
+    id: {
+      type: String,
+      required: true,
+    },
+    relationship: {
+      type: String,
+      required: true,
+      enum: relationshipStatuses,
+    },
+  }],
   gender: String,
-  avatar: String,
   age: Number,
   name: String,
   updatedAt: Date,
@@ -30,7 +39,6 @@ UserSchema.set('toJSON', {
     return ret
   },
 })
-
 
 UserSchema.pre('save', function save(next) {
   this.updatedAt = new Date()

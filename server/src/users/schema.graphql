@@ -1,17 +1,44 @@
+enum Relationship {
+  BEFRIENDED
+  PENDING
+  REQUESTED
+  BLOCKED
+  DELETED
+}
+
 input SignupInput {
   authId: String!
   email: String!
+}
+
+input UpdateInput {
+  age: Int
+  gender: String
+  name: String
+  contacts: [FriendsInput]
+}
+
+input FriendsInput {
+  id: String!
+  relationship: Relationship!
+}
+
+type Friends {
+  id: String!
+  relationship: Relationship!
+}
+
+type UserOutput {
+  user: User
+  error: Error
 }
 
 type User {
   id: String!
   authId: String!
   email: String!
+  contacts: [Friends]
   age: Int
   gender: String
   name: String
-  friends: [String]
-  friendsRequested: [String]
-  friendsPending:[String]
-  avatar: String
 }

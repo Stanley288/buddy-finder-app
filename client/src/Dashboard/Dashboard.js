@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import Radium from 'radium'
-import { Card, CardTitle } from 'material-ui/Card'
 import theme from 'theme'
 
 import NavBar from 'components/NavBar'
 import Map from './Map'
 import Sidebar from './Sidebar'
-
+import { actions } from './dashboard.module'
 
 const styles = {
   root: {
@@ -28,17 +29,34 @@ const styles = {
 }
 
 class Dashboard extends Component {
-  state = {}
+  state = {
+    selected: null,
+  }
+
+  onSelect = (suggest) => {
+    this.setState({
+      selected: suggest,
+      suggests: [],
+    })
+  }
+
+  handleOnChange = (event) => {
+    const { value, name } = event.target
+
+    this.setState({
+      [name]: value,
+    })
+  }
 
   render() {
     return (
       <div style={styles.root}>
         <NavBar style={styles.navBar} title="Buddy Finder" />
+        <Sidebar onSelect={this.onSelect} />
         <div style={styles.dashboard}>
           <div style={styles.map}>
-            <Map />
+            <Map selected={this.state.selected} />
           </div>
-          <Sidebar />
         </div>
       </div>
     )
@@ -48,4 +66,12 @@ class Dashboard extends Component {
 Dashboard.propTypes = {}
 Dashboard.defaultProps = {}
 
-export default Radium(Dashboard)
+const mapStateToProps = state => ({
+  places: state.dashboard.places,
+})
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({ ...actions }, dispatch),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(Dashboard))

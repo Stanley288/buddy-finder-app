@@ -3,8 +3,9 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import mongoose from 'mongoose'
+import doctor from 'doctor-zhivago'
 
-import log from './log'
+import log from './src/utils/log'
 import routes from './routes'
 import config from './config'
 
@@ -18,12 +19,17 @@ app.use(morgan('combined')) // TODO: configure later
 
 // db setup
 mongoose.Promise = global.Promise
-mongoose.connect(config.db, { useMongoClient: !!1 })
+mongoose.connect(config.db)
 mongoose.connection.on('error', () => {
   log.fatal('unable to connect to mongodb')
 })
 
 routes(app)
+
+//  health check
+app.get('/', doctor({
+  mongoDB: { type: 'mongo', instance: mongoose },
+}))
 
 app.listen(port, () => {
   log.info('🌚  api started 🚀 ', { port, env })
