@@ -7,8 +7,11 @@ import theme from 'theme'
 
 const styles = {
   pageTitle: {
-    fontWeight: 'bold',
     fontSize: 26,
+    fontWeight: 'bold',
+    letterSpacing: 5,
+    color: theme.color.primary,
+    textShadow: `1px 1px 0 ${theme.color.black}`,
   },
   input: {
     color: theme.color.black,
@@ -18,11 +21,12 @@ const styles = {
   },
   label: {
     fontSize: 18,
-    margin: '0 40px 0 0',
+    width: 100,
   },
   cardContent: {
     display: 'flex',
     alignItems: 'center',
+    margin: '20px 0',
   },
   separator: {
     margin: '20px 0 40px',
@@ -33,6 +37,14 @@ const Settings = props => (
   <div>
     <div style={styles.pageTitle}>Settings</div>
     <div style={[theme.separator, styles.separator]} />
+    <div style={styles.cardContent}>
+      <div style={styles.label}>Name</div>
+      <TextField
+        value="Andrew Song"
+        textFieldStyle={styles.textField}
+        inputTextStyle={styles.input}
+      />
+    </div>
     <div style={styles.cardContent}>
       <div style={styles.label}>Email</div>
       <TextField

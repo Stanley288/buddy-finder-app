@@ -16,6 +16,9 @@ const theme = {
   borderRadius: {
     regular: 6,
   },
+  shadow: {
+    sharpPrimary: '4px 4px 0 0 #EB6164',
+  },
   separator: {
     height: 1,
     backgroundColor: '#41414C',
