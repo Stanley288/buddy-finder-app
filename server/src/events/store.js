@@ -8,17 +8,17 @@ const createEvent = async (eventData) => {
 }
 
 const getEventById = async (id) => {
-  const event = await Event.findByID(id)
+  const event = await Event.findById(id)
   return event
 }
 
-const getEventByGeolocation = async (geolocation) => {
-  // how to add in logic inside ?
-}
+// const getEventByGeolocation = async (geolocation) => {
+//   // how to add in logic inside ?
+// }
 
 const getEventByTitle = async (title) => {
   const event = await Event.findOne({ title })
   return event
 }
 
-export default { createEvent, getEventById, getEventByGeolocation, getEventByTitle }
+export default { createEvent, getEventById, getEventByTitle }

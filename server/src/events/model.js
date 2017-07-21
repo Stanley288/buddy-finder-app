@@ -30,6 +30,7 @@ const EventSchema = new Schema({
 EventSchema.set('toJSON', {
   transform: (doc, ret) => {
     /* eslint-disable no-param-reassign,no-underscore-dangle */
+    ret.id = ret._id
     delete ret._id
     delete ret.__v
   },

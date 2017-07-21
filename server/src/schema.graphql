@@ -10,11 +10,9 @@ type Query {
   # Find user by email
   userByEmail(email: String!): User
 
-  #KC
   # Find event by id
   event(id: String!): Event
 
-  # KC
   # Find event by title
   eventByTitle(title: String!): Event
 }
@@ -23,6 +21,7 @@ type Mutation {
   # Create user
   createUser(input: SignupInput!): UserOutput!
   updateUser(id: String!, input: UpdateInput!): User
+  createEvent(input: EventInput!): Event!
 }
 
 type Error {
