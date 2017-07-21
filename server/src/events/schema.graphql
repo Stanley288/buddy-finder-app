@@ -1,0 +1,27 @@
+enum ErrorCode {
+  SERVER_ERROR
+  USER_NOT_FOUND
+}
+
+type Query {
+  # Find event by id
+  event(id: String!): Event
+
+  # Find event by title
+  eventByTitle(title: String!): Event
+}
+
+type Mutation {
+  # Create event
+  createEvent(input: EventInput!): EventOutput!
+  updateEvent(id: String!, input: UpdateInput!): Event
+}
+
+type Error {
+  code: ErrorCode
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
