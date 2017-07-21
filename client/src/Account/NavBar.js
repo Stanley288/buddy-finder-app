@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import Radium from 'radium'
 
 import { Circle } from 'react-feather'
@@ -22,7 +21,7 @@ const styles = {
   },
 }
 
-const NavBar = props => (
+const NavBar = () => (
   <div style={styles.root}>
     <div style={styles.avatar}><Circle size={40} /></div>
     <div style={styles.option}><Link style={styles.link} to="/account/settings">Settings</Link></div>
@@ -30,8 +29,5 @@ const NavBar = props => (
     <div style={styles.option}><Link style={styles.link} to="/account/friends">Friends</Link></div>
   </div>
 )
-
-NavBar.propTypes = {}
-NavBar.defaultProps = {}
 
 export default Radium(NavBar)

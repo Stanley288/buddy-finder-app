@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Radium from 'radium'
 
-const Home = props => (
+const Settings = props => (
   <div>
   </div>
 )
 
-Home.propTypes = {}
-Home.defaultProps = {}
+Settings.propTypes = {}
+Settings.defaultProps = {}
 
-export default Radium(Home)
+export default Radium(Settings)

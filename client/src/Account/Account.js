@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import Radium from 'radium'
 
-import theme from 'theme'
-
 import NavBar from './NavBar'
+import Settings from './Settings'
 
 const styles = {
   root: {
@@ -27,7 +25,7 @@ class Account extends Component {
         <NavBar />
         <div>
           <Redirect from="/account" to="/account/settings" />
-          <Route exact path="/account/settings" component={() => <div>Settings Page</div>} />
+          <Route exact path="/account/settings" component={Settings} />
           <Route exact path="/account/events" component={() => <div>Events Page</div>} />
           <Route exact path="/account/friends" component={() => <div>Friends Page</div>} />
         </div>
