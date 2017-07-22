@@ -1,4 +1,4 @@
-import { getDistance } from './utils'
+import { getDistance } from '.././utils'
 import Event from './model'
 
 import { EVENT_NOT_FOUND, SERVER_ERROR } from '../utils/error'
