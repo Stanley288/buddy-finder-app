@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import PrimaryButton from 'components/Button/PrimaryButton'
 import TextField from 'components/TextField'
-import { signup, login } from 'utils/webAuth'
 import theme from 'theme'
 
 const styles = {
@@ -50,14 +49,11 @@ class Welcome extends Component {
   }
 
   login = async () => {
-    // const tokens = await login(this.state.username, this.state.password)
-    // localStorage.setItem('access_token', tokens.access_token)
-    // localStorage.setItem('expires_at', tokens.expires_at)
-    this.props.auth.login(this.state.username, this.state.password)
+    this.props.auth.login(this.state.username, this.state.password, this.props.history)
   }
 
   signup = () => {
-    this.props.auth.signup(this.state.username, this.state.password)
+    this.props.auth.signup(this.state.username, this.state.password, this.props.history)
   }
 
   render() {

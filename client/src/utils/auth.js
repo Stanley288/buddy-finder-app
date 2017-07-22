@@ -1,9 +1,8 @@
 import auth0 from 'auth0-js'
+import { gql } from 'react-apollo'
 
 import { authConfig } from '../config'
-
-// temporary hosted login page
-// TODO: custom login page with client grants
+import { client } from '../store'
 
 class Auth {
   auth = new auth0.WebAuth({
@@ -17,25 +16,44 @@ class Auth {
     this.auth.authorize()
   }
 
-  login = (username, password) => {
+  login = (username, password, history, isSignup = false) => {
     this.auth.client.login({
       realm: 'Username-Password-Authentication',
       username,
       password,
-      scope: 'openid profile',
+      scope: 'openid',
     }, (err, authResult) => {
-      console.log(authResult)
+      if (isSignup) {
+        const data = client.mutate({
+          mutation: gql`
+            mutation($input:SignupInput!) {
+              createUser(input:$input){
+                id
+              }
+            }
+          `,
+          variables: {
+            input: {
+              authId: authResult.accessToken,
+              email: username,
+            },
+          },
+        },
+        )
+      }
+      // TODO: redux to save user
+      this.setSession(authResult, history)
     })
   }
 
-  signup = (email, password) => {
+  signup = (email, password, history) => {
     this.auth.signup({
-      connection: 'CONNECTION',
+      connection: 'Username-Password-Authentication',
       email,
       password,
-    }, (err, args) => {
+    }, (err) => {
       if (err) throw new Error(err.message)
-      console.log(args)
+      this.login(email, password, history, true)
     })
   }
 
@@ -44,7 +62,7 @@ class Auth {
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
-    localStorage.removeItem('user')
+    localStorage.removeItem('email')
     // navigate to login page
     history.push('/')
   }
