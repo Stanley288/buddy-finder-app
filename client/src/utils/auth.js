@@ -28,18 +28,7 @@ class Auth {
           mutation: gql`
             mutation($input:SignupInput!) {
               createUser(input:$input){
-                user {
-                  id
-                  authId
-                  email
-                  contacts {
-                    id
-                    relationship
-                  }
-                  age
-                  gender
-                  name
-                }
+                id
               }
             }
           `,
