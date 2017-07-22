@@ -17,25 +17,25 @@ class Auth {
     this.auth.authorize()
   }
 
-  login = (username, password) => {
+  login = (username, password, history) => {
     this.auth.client.login({
       realm: 'Username-Password-Authentication',
       username,
       password,
       scope: 'openid profile',
     }, (err, authResult) => {
-      console.log(authResult)
+      this.setSession(authResult, history)
     })
   }
 
-  signup = (email, password) => {
+  signup = (email, password, history) => {
     this.auth.signup({
-      connection: 'CONNECTION',
+      connection: 'Username-Password-Authentication',
       email,
       password,
     }, (err, args) => {
       if (err) throw new Error(err.message)
-      console.log(args)
+      this.login(email, password, history)
     })
   }
 
@@ -44,7 +44,7 @@ class Auth {
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
-    localStorage.removeItem('user')
+    localStorage.removeItem('email')
     // navigate to login page
     history.push('/')
   }
