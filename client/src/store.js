@@ -9,7 +9,8 @@ import user from './Account/account.module'
 // Setup Apollo client
 export const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: 'http://ec2-13-59-155-68.us-east-2.compute.amazonaws.com:8080/graphql',
+    // uri: 'http://ec2-13-59-155-68.us-east-2.compute.amazonaws.com:8080/graphql',
+    uri: 'http://d3b86c64.ngrok.io/graphql',
   }),
 })
 

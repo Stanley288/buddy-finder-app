@@ -1,9 +1,8 @@
 import auth0 from 'auth0-js'
+import { gql } from 'react-apollo'
 
 import { authConfig } from '../config'
-
-// temporary hosted login page
-// TODO: custom login page with client grants
+import { client } from '../store'
 
 class Auth {
   auth = new auth0.WebAuth({
@@ -17,13 +16,43 @@ class Auth {
     this.auth.authorize()
   }
 
-  login = (username, password, history) => {
+  login = (username, password, history, isSignup = false) => {
     this.auth.client.login({
       realm: 'Username-Password-Authentication',
       username,
       password,
-      scope: 'openid profile',
+      scope: 'openid',
     }, (err, authResult) => {
+      if (isSignup) {
+        const data = client.mutate({
+          mutation: gql`
+            mutation($input:SignupInput!) {
+              createUser(input:$input){
+                user {
+                  id
+                  authId
+                  email
+                  contacts {
+                    id
+                    relationship
+                  }
+                  age
+                  gender
+                  name
+                }
+              }
+            }
+          `,
+          variables: {
+            input: {
+              authId: authResult.accessToken,
+              email: username,
+            },
+          },
+        },
+        )
+      }
+      // TODO: redux to save user
       this.setSession(authResult, history)
     })
   }
@@ -33,9 +62,9 @@ class Auth {
       connection: 'Username-Password-Authentication',
       email,
       password,
-    }, (err, args) => {
+    }, (err) => {
       if (err) throw new Error(err.message)
-      this.login(email, password, history)
+      this.login(email, password, history, true)
     })
   }
 

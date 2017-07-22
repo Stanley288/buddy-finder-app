@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import PrimaryButton from 'components/Button/PrimaryButton'
 import TextField from 'components/TextField'
-import { signup, login } from 'utils/webAuth'
 import theme from 'theme'
 
 const styles = {
