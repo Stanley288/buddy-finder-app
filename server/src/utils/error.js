@@ -1,2 +1,3 @@
 export const USER_NOT_FOUND = 'USER_NOT_FOUND'
 export const SERVER_ERROR = 'SERVER_ERROR'
+export const EVENT_NOT_FOUND = 'EVENT_NOT_FOUND'
