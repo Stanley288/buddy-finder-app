@@ -1,4 +1,5 @@
 export default {
+  // Server Environment
   env: process.env.NODE_ENV || 'production',
 
   // Server port
