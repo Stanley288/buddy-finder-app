@@ -50,9 +50,10 @@ class Welcome extends Component {
   }
 
   login = async () => {
-    const tokens = await login(this.state.username, this.state.password)
-    localStorage.setItem('access_token', tokens.access_token)
-    localStorage.setItem('expires_at', tokens.expires_at)
+    // const tokens = await login(this.state.username, this.state.password)
+    // localStorage.setItem('access_token', tokens.access_token)
+    // localStorage.setItem('expires_at', tokens.expires_at)
+    this.props.auth.login(this.state.username, this.state.password)
   }
 
   signup = () => {

@@ -13,8 +13,19 @@ class Auth {
     responseType: 'token id_token',
   })
 
-  login = () => {
+  hostedLogin = () => {
     this.auth.authorize()
+  }
+
+  login = (username, password) => {
+    this.auth.redirect.loginWithCredentials({
+      connection: 'Username-Password-Authentication',
+      username,
+      password,
+      scope: 'openid',
+    }, (err, authResult) => {
+      console.log(authResult)
+    })
   }
 
   signup = (email, password) => {
