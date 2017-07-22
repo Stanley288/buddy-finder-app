@@ -1,29 +1,29 @@
 import fetch from 'isomorphic-fetch'
-// import auth0 from 'auth0-js'
-//
+import auth0 from 'auth0-js'
+
 import { authConfig } from '../config'
-//
-// // REVIEW: do not use
-// const signup = (email, password) => {
-//   const webAuth = new auth0.WebAuth({
-//     domain: authConfig.domain,
-//     clientID: authConfig.clientId,
-//   })
-//
-//   try {
-//     webAuth.signup({
-//       connection: 'CONNECTION',
-//       email,
-//       password,
-//     }, (err, args) => {
-//       if (err) throw new Error(err.message)
-//       console.log(args)
-//     })
-//   } catch (err) {
-//     return err
-//   }
-//   return { status: 'success' }
-// }
+
+// REVIEW: do not use
+const signup = (email, password) => {
+  const webAuth = new auth0.WebAuth({
+    domain: authConfig.domain,
+    clientID: authConfig.clientId,
+  })
+
+  try {
+    webAuth.signup({
+      connection: 'CONNECTION',
+      email,
+      password,
+    }, (err, args) => {
+      if (err) throw new Error(err.message)
+      console.log(args)
+    })
+  } catch (err) {
+    return err
+  }
+  return { status: 'success' }
+}
 
 const login = async (username, password) => {
   const options = {
@@ -47,6 +47,6 @@ const login = async (username, password) => {
 }
 
 export default {
-  // signup,
+  signup,
   login,
 }

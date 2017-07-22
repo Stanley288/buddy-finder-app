@@ -18,11 +18,11 @@ class Auth {
   }
 
   login = (username, password) => {
-    this.auth.redirect.loginWithCredentials({
-      connection: 'Username-Password-Authentication',
+    this.auth.client.login({
+      realm: 'Username-Password-Authentication',
       username,
       password,
-      scope: 'openid',
+      scope: 'openid profile',
     }, (err, authResult) => {
       console.log(authResult)
     })
