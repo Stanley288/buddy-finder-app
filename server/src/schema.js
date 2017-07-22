@@ -21,19 +21,19 @@ const rootResolvers = {
         throw e
       }
     },
-    userByEmail: async (root, args) => {
+    userByAuthId: async (root, args) => {
       try {
-        const { email } = args
-        const user = await getUserByEmail(email)
+        const { authId } = args
+        const user = await getUserByAuthId(authId)
         return user
       } catch (e) {
         throw e
       }
     },
-    userByAuthId: async (root, args) => {
+    userByEmail: async (root, args) => {
       try {
-        const { authId } = args
-        const user = await getUserByAuthId(authId)
+        const { email } = args
+        const user = await getUserByEmail(email)
         return user
       } catch (e) {
         throw e
