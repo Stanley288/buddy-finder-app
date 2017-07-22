@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import TextField from 'components/TextField'
 import PrimaryButton from 'components/Button/PrimaryButton'
+import TextField from 'components/TextField'
 import theme from 'theme'
 
 const styles = {
@@ -34,15 +34,36 @@ const styles = {
   },
 }
 
-const Welcome = ({ auth }) => (
-  <div style={styles.root}>
-    <div style={styles.content}>
-      <div style={styles.logo}>B<small>F</small></div>
-      <div style={styles.slogan}>Insert our fancy slogan here</div>
-      <PrimaryButton rootStyle={styles.buttons} onClick={auth.login}>Log In</PrimaryButton>
-    </div>
-  </div>
-)
+class Welcome extends Component {
+  state = {
+    username: '',
+    password: '',
+  }
+
+  handleInputChange = (e) => {
+    const { value, name } = e.target
+
+    this.setState({
+      [name]: value,
+    })
+  }
+
+  render() {
+    const { auth } = this.props
+    return (
+      <div style={styles.root}>
+        <div style={styles.content}>
+          <div style={styles.logo}>B<small>F</small></div>
+          <div style={styles.slogan}>Insert our fancy slogan here</div>
+          <TextField hintText="Username" value={this.state.username} name="username" onChange={this.handleInputChange} />
+          <TextField type="password" hintText="Password" value={this.state.password} name="password" onChange={this.handleInputChange} />
+          <PrimaryButton rootStyle={styles.buttons} onClick={auth.login}>Log In</PrimaryButton>
+          <PrimaryButton rootStyle={styles.buttons} onClick={auth.signup}>Sign Up</PrimaryButton>
+        </div>
+      </div>
+    )
+  }
+}
 
 Welcome.propTypes = {}
 Welcome.defaultProps = {}

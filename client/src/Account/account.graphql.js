@@ -1,4 +1,5 @@
 import { graphql, gql } from 'react-apollo'
+
 import Account from './Account'
 
 const query = gql`
@@ -9,11 +10,11 @@ const query = gql`
   }
 `
 const options = {
-  options: {
+  options: (ownProps) => ({
     variables: {
       id: '',
     },
-  },
+  }),
 }
 
 // export default graphql(query, options)(Account)

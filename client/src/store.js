@@ -4,11 +4,12 @@ import logger from 'redux-logger'
 import { ApolloClient, createNetworkInterface } from 'react-apollo'
 
 import dashboard from './Dashboard/dashboard.module'
+import user from './Account/account.module'
 
 // Setup Apollo client
 export const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: 'ADD_CONNECTION_HERE',
+    uri: 'http://ec2-13-59-155-68.us-east-2.compute.amazonaws.com:8080/graphql',
   }),
 })
 
@@ -20,6 +21,7 @@ export function configureStore(initialState = {}) {
 
   const reducers = combineReducers({
     dashboard,
+    user,
     apollo: client.reducer(),
   })
 

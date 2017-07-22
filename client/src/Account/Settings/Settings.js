@@ -23,7 +23,7 @@ const styles = {
     fontSize: 18,
     width: 100,
   },
-  cardContent: {
+  section: {
     display: 'flex',
     alignItems: 'center',
     margin: '20px 0',
@@ -37,7 +37,7 @@ const Settings = props => (
   <div>
     <div style={styles.pageTitle}>Settings</div>
     <div style={[theme.separator, styles.separator]} />
-    <div style={styles.cardContent}>
+    <div style={styles.section}>
       <div style={styles.label}>Name</div>
       <TextField
         value="Andrew Song"
@@ -45,13 +45,21 @@ const Settings = props => (
         inputTextStyle={styles.input}
       />
     </div>
-    <div style={styles.cardContent}>
+    <div style={styles.section}>
       <div style={styles.label}>Email</div>
       <TextField
         value="andrewgnos@gmail.com"
         textFieldStyle={styles.textField}
         inputTextStyle={styles.input}
       />
+    </div>
+    <div style={styles.section}>
+      <div style={styles.label}>Gender</div>
+      <div>M</div>
+    </div>
+    <div style={styles.section}>
+      <div style={styles.label}>Age</div>
+      <div>22</div>
     </div>
   </div>
 )

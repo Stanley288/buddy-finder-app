@@ -1,6 +1,6 @@
 const theme = {
   fontFamily: {
-    regular: "'Montserrat', sans-serif",
+    regular: "'Nunito', sans-serif",
   },
   color: {
     primary: '#EB6164',

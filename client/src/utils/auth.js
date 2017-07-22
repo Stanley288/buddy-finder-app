@@ -22,6 +22,7 @@ class Auth {
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
+    localStorage.removeItem('user')
     // navigate to login page
     history.push('/')
   }
@@ -44,6 +45,9 @@ class Auth {
     localStorage.setItem('access_token', authResult.accessToken)
     localStorage.setItem('id_token', authResult.idToken)
     localStorage.setItem('expires_at', expiresAt)
+    this.auth.client.userInfo(authResult.accessToken, (err, profile) => {
+      if (profile) localStorage.setItem('email', profile.email)
+    })
     // navigate to dashboard
     history.push('/dashboard')
   }
@@ -53,6 +57,8 @@ class Auth {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'))
     return new Date().getTime() < expiresAt
   }
+
+  getEmail = () => localStorage.getItem('email')
 }
 
 export default new Auth()

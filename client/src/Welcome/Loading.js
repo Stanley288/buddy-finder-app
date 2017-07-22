@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { withApollo } from 'react-apollo'
 import PropTypes from 'prop-types'
 import Radium from 'radium'
+
+import Auth from 'utils/auth'
 
 const styles = {
   margin: 'auto',
 }
 
-const Loading = props => (
-  <div style={styles}>
-    Loading!
-  </div>
-)
+class Loading extends Component {
+  render() {
+    return (
+      <div style={styles}>Loading...</div>
+    )
+  }
+}
 
 Loading.propTypes = {}
 Loading.defaultProps = {}
 
-export default Radium(Loading)
+export default withApollo(Radium(Loading))
