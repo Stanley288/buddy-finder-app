@@ -6,7 +6,6 @@ import TextField from 'components/TextField'
 import { signup, login } from 'utils/webAuth'
 import theme from 'theme'
 
-
 const styles = {
   root: {
     height: '100%',
@@ -56,9 +55,8 @@ class Welcome extends Component {
     localStorage.setItem('expires_at', tokens.expires_at)
   }
 
-  signup = async () => {
-    const res = await signup(this.state.username, this.state.password)
-    console.log(res)
+  signup = () => {
+    this.props.auth.signup(this.state.username, this.state.password)
   }
 
   render() {

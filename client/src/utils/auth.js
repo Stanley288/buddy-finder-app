@@ -17,6 +17,17 @@ class Auth {
     this.auth.authorize()
   }
 
+  signup = (email, password) => {
+    this.auth.signup({
+      connection: 'CONNECTION',
+      email,
+      password,
+    }, (err, args) => {
+      if (err) throw new Error(err.message)
+      console.log(args)
+    })
+  }
+
   logout = (history) => {
     // Clear access token and ID token from local storage
     localStorage.removeItem('access_token')
