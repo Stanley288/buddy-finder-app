@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 
 import PrimaryButton from 'components/Button/PrimaryButton'
 import TextField from 'components/TextField'
+import authLogin from 'utils/oauth'
 import theme from 'theme'
+
 
 const styles = {
   root: {
@@ -48,6 +50,11 @@ class Welcome extends Component {
     })
   }
 
+  login = async () => {
+    const tokens = await authLogin(this.state.username, this.state.password)
+    localStorage.setItem('access_token', tokens.access_token)
+  }
+
   render() {
     const { auth } = this.props
     return (
@@ -57,7 +64,7 @@ class Welcome extends Component {
           <div style={styles.slogan}>Insert our fancy slogan here</div>
           <TextField hintText="Username" value={this.state.username} name="username" onChange={this.handleInputChange} />
           <TextField type="password" hintText="Password" value={this.state.password} name="password" onChange={this.handleInputChange} />
-          <PrimaryButton rootStyle={styles.buttons} onClick={auth.login}>Log In</PrimaryButton>
+          <PrimaryButton rootStyle={styles.buttons} onClick={this.login}>Log In</PrimaryButton>
           <PrimaryButton rootStyle={styles.buttons} onClick={auth.signup}>Sign Up</PrimaryButton>
         </div>
       </div>
