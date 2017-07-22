@@ -51,7 +51,8 @@ const rootResolvers = {
       const { input } = args
       try {
         const createdUser = await createUser(input)
-        return { user: createdUser }
+
+        return createdUser
       } catch (e) {
         throw e
       }
