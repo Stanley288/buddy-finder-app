@@ -13,14 +13,22 @@ const rootSchema = [fs.readFileSync(join(__dirname, 'schema.graphql'), 'utf-8')]
 const rootResolvers = {
   Query: {
     user: async (root, args) => {
-      const { id } = args
-      const user = await getUserById(id)
-      return user
+      try {
+        const { id } = args
+        const user = await getUserById(id)
+        return user
+      } catch (e) {
+        throw e
+      }
     },
     userByEmail: async (root, args) => {
-      const { email } = args
-      const user = await getUserByEmail(email)
-      return user
+      try {
+        const { email } = args
+        const user = await getUserByEmail(email)
+        return user
+      } catch (e) {
+        throw e
+      }
     },
     event: async (root, args) => {
       const { id } = args

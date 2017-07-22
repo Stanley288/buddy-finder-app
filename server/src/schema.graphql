@@ -25,7 +25,7 @@ type Mutation {
   ## users ##
 
   # Create user
-  createUser(input: SignupInput!): UserOutput!
+  createUser(input: SignupInput!): User!
   # Update user
   updateUser(id: String!, input: UpdateInput!): User
 
