@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import PrimaryButton from 'components/Button/PrimaryButton'
 import TextField from 'components/TextField'
-import authLogin from 'utils/oauth'
+import { signup, login } from 'utils/webAuth'
 import theme from 'theme'
 
 
@@ -51,8 +51,14 @@ class Welcome extends Component {
   }
 
   login = async () => {
-    const tokens = await authLogin(this.state.username, this.state.password)
+    const tokens = await login(this.state.username, this.state.password)
     localStorage.setItem('access_token', tokens.access_token)
+    localStorage.setItem('expires_at', tokens.expires_at)
+  }
+
+  signup = async () => {
+    const res = await signup(this.state.username, this.state.password)
+    console.log(res)
   }
 
   render() {
@@ -65,7 +71,7 @@ class Welcome extends Component {
           <TextField hintText="Username" value={this.state.username} name="username" onChange={this.handleInputChange} />
           <TextField type="password" hintText="Password" value={this.state.password} name="password" onChange={this.handleInputChange} />
           <PrimaryButton rootStyle={styles.buttons} onClick={this.login}>Log In</PrimaryButton>
-          <PrimaryButton rootStyle={styles.buttons} onClick={auth.signup}>Sign Up</PrimaryButton>
+          <PrimaryButton rootStyle={styles.buttons} onClick={this.signup}>Sign Up</PrimaryButton>
         </div>
       </div>
     )

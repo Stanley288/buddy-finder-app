@@ -1,8 +1,25 @@
 import fetch from 'isomorphic-fetch'
+import auth from 'utils/auth'
 
 import { authConfig } from '../config'
 
-const request = async (username, password) => {
+const signup = async (email, password) => {
+  try {
+    auth.auth.signup({
+      connection: 'CONNECTION',
+      email,
+      password,
+    }, (err, args) => {
+      if (err) throw new Error(err.message)
+      console.log(args)
+    })
+  } catch (err) {
+    return err
+  }
+  return { status: 'success' }
+}
+
+const login = async (username, password) => {
   const options = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -23,4 +40,7 @@ const request = async (username, password) => {
   }
 }
 
-export default request
+export default {
+  signup,
+  login,
+}
