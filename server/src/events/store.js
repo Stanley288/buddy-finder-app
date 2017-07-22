@@ -22,11 +22,11 @@ const getEventByLocation = async (userLocation, distance) => {
   // TODO: I use the get distance function I made, can you test and make sure it work since i didnt test it
 
   const allEvents = await Event.find({})
+  if (!allEvents) throw SERVER_ERROR
 
   //  filter events within the radius
   const events = allEvents.filter(event => (getDistance(userLocation, event.location) <= distance))
 
-  if (!events) throw SERVER_ERROR
   if (!events.length) throw EVENT_NOT_FOUND
   return events
 }
