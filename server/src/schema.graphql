@@ -10,6 +10,8 @@ type Query {
   user(id: String!): User
   # Find user by email
   userByEmail(email: String!): User
+  # Find user by authId
+  userByAuthId(authId: String!): User
 
 ## events ##
 

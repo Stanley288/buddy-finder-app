@@ -4,7 +4,7 @@ import { join } from 'path'
 import { makeExecutableSchema } from 'graphql-tools'
 
 import { schema as usersSchema, resolvers as usersResolvers } from './users/schema'
-import { getUserById, getUserByEmail, createUser, updateUser } from './users/store'
+import { getUserById, getUserByEmail, getUserByAuthId, createUser, updateUser } from './users/store'
 import { getEventById, getEventByTitle, getEventByLocation, createEvent } from './events/store'
 import { schema as eventsSchema, resolvers as eventsResolvers } from './events/schema'
 
@@ -25,6 +25,15 @@ const rootResolvers = {
       try {
         const { email } = args
         const user = await getUserByEmail(email)
+        return user
+      } catch (e) {
+        throw e
+      }
+    },
+    userByAuthId: async (root, args) => {
+      try {
+        const { authId } = args
+        const user = await getUserByAuthId(authId)
         return user
       } catch (e) {
         throw e
