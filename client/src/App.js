@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { ApolloProvider, ApolloClient, createNetworkInterface } from 'react-apollo'
+import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
 import { StyleRoot } from 'radium'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -10,29 +9,21 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import theme from 'theme'
 
 import Routes from './routes'
+import store, { client } from './store'
 
 // Base stylesheets
 import './styles/normalize.css'
 import './styles/app.css'
 
-// Setup Apollo client
-const createClient = () => (
-  new ApolloClient({
-    networkInterface: createNetworkInterface({
-      uri: 'ADD_CONNECTION_HERE',
-    }),
-  })
-)
-
 const muiTheme = getMuiTheme({
   fontFamily: theme.fontFamily.regular,
 })
 
-function App(props) {
+function App() {
   return (
     <MuiThemeProvider muiTheme={muiTheme}>
-      <ApolloProvider client={createClient()}>
-        <Provider store={props.store}>
+      <ApolloProvider client={client} store={store}>
+        <Provider store={store}>
           <div>
             <Helmet
               titleTemplate="%s | Some Boilerplate"
@@ -56,10 +47,6 @@ function App(props) {
       </ApolloProvider>
     </MuiThemeProvider>
   )
-}
-
-App.propTypes = {
-  store: PropTypes.object.isRequired, // eslint-disable-line
 }
 
 export default App

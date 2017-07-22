@@ -1,13 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, browserHistory, Route, Redirect } from 'react-router-dom'
 
+import Auth from 'utils/auth'
+
 import Welcome from './Welcome'
 import Loading from './Welcome/Loading'
 import Dashboard from './Dashboard'
-
-import Auth from './auth'
-
-const auth = new Auth()
+import Account from './Account'
 
 const styles = {
   height: '100vh',
@@ -19,21 +18,29 @@ export default () => (
       <Route
         exact
         path="/"
-        render={props => <Welcome {...props} auth={auth} />}
+        render={props => <Welcome {...props} auth={Auth} />}
       />
       <Route
         exact
         path="/loading"
         render={(props) => {
-          auth.handleAuthentication(props)
+          Auth.handleAuthentication(props)
           return <Loading {...props} />
         }}
       />
       <Route
         path="/dashboard"
         render={props => (
-          auth.isAuthenticated() ?
-            <Dashboard {...props} auth={auth} /> :
+          Auth.isAuthenticated() ?
+            <Dashboard {...props} auth={Auth} /> :
+            <Redirect to="/" />
+        )}
+      />
+      <Route
+        path="/account"
+        render={props => (
+          Auth.isAuthenticated() ?
+            <Account {...props} auth={Auth} /> :
             <Redirect to="/" />
         )}
       />

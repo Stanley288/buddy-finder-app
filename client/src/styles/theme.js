@@ -1,6 +1,6 @@
 const theme = {
   fontFamily: {
-    regular: "'Montserrat', sans-serif",
+    regular: "'Nunito', sans-serif",
   },
   color: {
     primary: '#EB6164',
@@ -15,6 +15,15 @@ const theme = {
   },
   borderRadius: {
     regular: 6,
+  },
+  shadow: {
+    sharpPrimary: '4px 4px 0 0 #EB6164',
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#41414C',
+    width: '100%',
+    margin: '20px 0',
   },
 }
 

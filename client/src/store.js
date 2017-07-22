@@ -1,27 +1,37 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
+import { ApolloClient, createNetworkInterface } from 'react-apollo'
 
-import rootReducer from './reducers'
+import dashboard from './Dashboard/dashboard.module'
+import user from './Account/account.module'
+
+// Setup Apollo client
+export const client = new ApolloClient({
+  networkInterface: createNetworkInterface({
+    uri: 'http://ec2-13-59-155-68.us-east-2.compute.amazonaws.com:8080/graphql',
+  }),
+})
 
 export function configureStore(initialState = {}) {
   // Middleware and store enhancers
   const enhancers = [
-    applyMiddleware(thunk, logger),
+    applyMiddleware(thunk, logger, client.middleware()),
   ]
 
-  const store = createStore(rootReducer, initialState, compose(...enhancers))
+  const reducers = combineReducers({
+    dashboard,
+    user,
+    apollo: client.reducer(),
+  })
 
-  // For hot reloading reducers
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      const nextReducer = require('./reducers').default // eslint-disable-line
-
-      store.replaceReducer(nextReducer)
-    })
-  }
+  const store = createStore(
+    reducers,
+    initialState,
+    compose(...enhancers),
+  )
 
   return store
 }
 
-export default configureStore
+export default configureStore()

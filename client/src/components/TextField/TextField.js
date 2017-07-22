@@ -20,17 +20,13 @@ const styles = {
     bottom: 'initial',
     fontSize: 12,
   },
-  hintIcon: {
-    width: 16,
-    fontSize: 16,
-  },
   inputStyle: {
     color: theme.color.white,
   },
 }
 
 const TextFieldComponent = ({ textFieldStyle, hintTextStyle, inputTextStyle, hintIcon, hintText, ...props }) => {
-  const iconHintText = <span><i style={styles.hintIcon} className={hintIcon} /> {hintText}</span>
+  const iconHintText = <span>{hintText}</span>
   return (
     <div>
       <TextField

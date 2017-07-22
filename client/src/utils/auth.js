@@ -5,7 +5,7 @@ import { authConfig } from '../config'
 // temporary hosted login page
 // TODO: custom login page with client grants
 
-export default class Auth {
+class Auth {
   auth = new auth0.WebAuth({
     domain: authConfig.domain,
     clientID: authConfig.clientId,
@@ -13,8 +13,30 @@ export default class Auth {
     responseType: 'token id_token',
   })
 
-  login = () => {
+  hostedLogin = () => {
     this.auth.authorize()
+  }
+
+  login = (username, password) => {
+    this.auth.client.login({
+      realm: 'Username-Password-Authentication',
+      username,
+      password,
+      scope: 'openid profile',
+    }, (err, authResult) => {
+      console.log(authResult)
+    })
+  }
+
+  signup = (email, password) => {
+    this.auth.signup({
+      connection: 'CONNECTION',
+      email,
+      password,
+    }, (err, args) => {
+      if (err) throw new Error(err.message)
+      console.log(args)
+    })
   }
 
   logout = (history) => {
@@ -22,6 +44,7 @@ export default class Auth {
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
+    localStorage.removeItem('user')
     // navigate to login page
     history.push('/')
   }
@@ -44,6 +67,9 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken)
     localStorage.setItem('id_token', authResult.idToken)
     localStorage.setItem('expires_at', expiresAt)
+    this.auth.client.userInfo(authResult.accessToken, (err, profile) => {
+      if (profile) localStorage.setItem('email', profile.email)
+    })
     // navigate to dashboard
     history.push('/dashboard')
   }
@@ -53,4 +79,8 @@ export default class Auth {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'))
     return new Date().getTime() < expiresAt
   }
+
+  getEmail = () => localStorage.getItem('email')
 }
+
+export default new Auth()
