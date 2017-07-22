@@ -1,4 +1,4 @@
-# BuddyFinder-app
+# Buddy Finder
 Front end and Back end services for our App Buddy Finder
 
 ## START PROJECT
@@ -25,7 +25,7 @@ Front end and Back end services for our App Buddy Finder
     -socker.io
     -docker
 
-## Front end
+## Front end (Buddy-Finder-App)
     Implemented Featuers:
         -user log in / sign up
         -embedded google map
@@ -41,7 +41,7 @@ Front end and Back end services for our App Buddy Finder
         -refine google map search feature
         
         
-## Back end
+## Back end (Buddy-Finder-Api)
     Implemented Featuers:
         -user creation endpoint
         -user information update endpoint
