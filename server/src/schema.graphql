@@ -36,10 +36,6 @@ type Mutation {
   createEvent(input: EventInput!): Event!
 }
 
-type Error {
-  code: ErrorCode
-}
-
 schema {
   query: Query
   mutation: Mutation

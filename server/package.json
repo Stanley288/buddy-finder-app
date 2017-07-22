@@ -15,7 +15,6 @@
   "author": "CMPT 470 Group 2",
   "license": "ISC",
   "dependencies": {
-    "auth0-js": "^8.8.0",
     "body-parser": "^1.17.1",
     "bunyan": "^1.8.10",
     "doctor-zhivago": "^1.4.5",
@@ -26,10 +25,7 @@
     "jwt-simple": "^0.5.1",
     "lodash": "^4.17.4",
     "mongoose": "^4.9.7",
-    "morgan": "^1.8.1",
-    "passport": "^0.3.2",
-    "passport-jwt": "^2.2.1",
-    "passport-local": "^1.0.0"
+    "morgan": "^1.8.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

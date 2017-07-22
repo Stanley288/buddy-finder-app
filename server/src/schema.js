@@ -40,19 +40,31 @@ const rootResolvers = {
       }
     },
     event: async (root, args) => {
-      const { id } = args
-      const event = await getEventById(id)
-      return event
+      try {
+        const { id } = args
+        const event = await getEventById(id)
+        return event
+      } catch (e) {
+        throw e
+      }
     },
     eventByTitle: async (root, args) => {
-      const { title } = args
-      const event = await getEventByTitle(title)
-      return event
+      try {
+        const { title } = args
+        const event = await getEventByTitle(title)
+        return event
+      } catch (e) {
+        throw e
+      }
     },
     eventByLocation: async (root, args) => {
-      const { location, distance } = args
-      const event = await getEventByLocation(location, distance)
-      return event
+      try {
+        const { location, distance } = args
+        const event = await getEventByLocation(location, distance)
+        return event
+      } catch (e) {
+        throw e
+      }
     },
   },
   Mutation: {
@@ -79,7 +91,7 @@ const rootResolvers = {
       const { input } = args
       try {
         const createdEvent = await createEvent(input)
-        return { event: createdEvent }
+        return createdEvent
       } catch (e) {
         throw e
       }

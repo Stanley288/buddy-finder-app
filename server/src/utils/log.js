@@ -1,5 +1,5 @@
 import bunyan from 'bunyan'
 
-const log = bunyan.createLogger({ name: 'buddyFinder' })
+const log = bunyan.createLogger({ name: 'buddy-finder-api' })
 
 export default log
